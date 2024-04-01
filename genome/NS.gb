@@ -1,0 +1,65 @@
+LOCUS       LC333189                 890 bp    cRNA    linear   VRL 31-AUG-2018
+DEFINITION  Influenza A virus (A/WSN/1933(H1N1)) viral cRNA, segment 8,
+            complete sequence.
+ACCESSION   LC333189
+VERSION     LC333189.1
+KEYWORDS    .
+SOURCE      Influenza A virus (A/WSN/1933(H1N1))
+  ORGANISM  Influenza A virus (A/WSN/1933(H1N1))
+            Viruses; Riboviria; Orthornavirae; Negarnaviricota;
+            Polyploviricotina; Insthoviricetes; Articulavirales;
+            Orthomyxoviridae; Alphainfluenzavirus; Alphainfluenzavirus
+            influenzae.
+REFERENCE   1
+  AUTHORS   Noda,T., Murakami,S., Nakatsu,S., Imai,H., Muramoto,Y., Shindo,K.,
+            Sagara,H. and Kawaoka,Y.
+  TITLE     Importance of the 1+7 configuration of ribonucleoprotein complexes
+            for influenza A virus genome packaging
+  JOURNAL   Nat Commun 9 (1), 54 (2018)
+   PUBMED   29302061
+  REMARK    DOI:10.1038/s41467-017-02517-w
+            Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 890)
+  AUTHORS   Murakami,S., Noda,T. and Kawaoka,Y.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (01-NOV-2017) Contact:Shin Murakami The University of
+            Tokyo, Department of Veterinary Microbiology; 1-1-1 Yayoi,
+            Bunkyo-ku, Tokyo 1138657, Japan
+FEATURES             Location/Qualifiers
+     source          1..890
+                     /organism="Influenza A virus (A/WSN/1933(H1N1))"
+                     /mol_type="viral cRNA"
+                     /strain="A/WSN/1933"
+                     /serotype="H1N1"
+                     /db_xref="taxon:382835"
+                     /segment="8"
+     gene            27..719
+                     /gene="NS1"
+     CDS             27..719
+                     /gene="NS1"
+                     /codon_start=1
+                     /product="nonstructural protein 1"
+                     /protein_id="BBB04706.1"
+                     /translation="MDPNTVSSFQVDCFLWHVRKRVADQELGDAPFLDRLRRDQKSLR
+                     GRGSTLGLDIETATRAGKQIVERILKEESDEALKMTMASVPASRYLTDMTLEEMSRHW
+                     FMLMPKQKVAGPLCIRMDQAIMDKNIILKANFSVIFDRLETLILLRAFTEEGTIVGEI
+                     SPLPSLPGHTDEDVKNAVGVLIGGLEWNNNTVRVSETLQRFAWRSSNENGRPPLTPKQ
+                     KRKMAGTIRSEV"
+ORIGIN      
+        1 agcaaaagca gggtgacaaa gacataatgg atccaaacac tgtgtcaagc tttcaggtag
+       61 attgctttct ttggcatgtc cgcaaaagag ttgcagacca agaactaggt gatgccccat
+      121 tccttgatcg gcttcgccga gatcagaagt ccctaagagg aagaggcagc actcttggtc
+      181 tggacatcga aacagccacc cgtgctggaa agcaaatagt ggagcggatt ctgaaggaag
+      241 aatctgatga ggcactcaaa atgaccatgg cctctgtacc tgcatcgcgc tacctaactg
+      301 acatgactct tgaggaaatg tcaaggcact ggttcatgct catgcccaag cagaaagtgg
+      361 caggccctct ttgtatcaga atggaccagg cgatcatgga taagaacatc atactgaaag
+      421 cgaacttcag tgtgattttt gaccggctgg agactctaat attactaagg gccttcaccg
+      481 aagaggggac aattgttggc gaaatttcac cactgccctc tcttccagga catactgatg
+      541 aggatgtcaa aaatgcagtt ggggtcctca tcggaggact tgaatggaat aataacacag
+      601 ttcgagtctc tgaaactcta cagagattcg cttggagaag cagtaatgag aatgggagac
+      661 ctccactcac tccaaaacag aaacggaaaa tggcgggaac aattaggtca gaagtttgaa
+      721 gaaataagat ggttgattga agaagtgaga cacagactga agataacaga gaatagtttt
+      781 gagcaaataa catttatgca agccttacaa ctattgcttg aagtggagca agagataaga
+      841 actttctcgt ttcagcttat ttaataataa aaaacaccct tgtttctact
+//
+

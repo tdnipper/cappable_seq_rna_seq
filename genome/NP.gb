@@ -1,0 +1,81 @@
+LOCUS       LC333186                1565 bp    cRNA    linear   VRL 31-AUG-2018
+DEFINITION  Influenza A virus (A/WSN/1933(H1N1)) viral cRNA, segment 5,
+            complete sequence.
+ACCESSION   LC333186
+VERSION     LC333186.1
+KEYWORDS    .
+SOURCE      Influenza A virus (A/WSN/1933(H1N1))
+  ORGANISM  Influenza A virus (A/WSN/1933(H1N1))
+            Viruses; Riboviria; Orthornavirae; Negarnaviricota;
+            Polyploviricotina; Insthoviricetes; Articulavirales;
+            Orthomyxoviridae; Alphainfluenzavirus; Alphainfluenzavirus
+            influenzae.
+REFERENCE   1
+  AUTHORS   Noda,T., Murakami,S., Nakatsu,S., Imai,H., Muramoto,Y., Shindo,K.,
+            Sagara,H. and Kawaoka,Y.
+  TITLE     Importance of the 1+7 configuration of ribonucleoprotein complexes
+            for influenza A virus genome packaging
+  JOURNAL   Nat Commun 9 (1), 54 (2018)
+   PUBMED   29302061
+  REMARK    DOI:10.1038/s41467-017-02517-w
+            Publication Status: Online-Only
+REFERENCE   2  (bases 1 to 1565)
+  AUTHORS   Murakami,S., Noda,T. and Kawaoka,Y.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (01-NOV-2017) Contact:Shin Murakami The University of
+            Tokyo, Department of Veterinary Microbiology; 1-1-1 Yayoi,
+            Bunkyo-ku, Tokyo 1138657, Japan
+FEATURES             Location/Qualifiers
+     source          1..1565
+                     /organism="Influenza A virus (A/WSN/1933(H1N1))"
+                     /mol_type="viral cRNA"
+                     /strain="A/WSN/1933"
+                     /serotype="H1N1"
+                     /db_xref="taxon:382835"
+                     /segment="5"
+     gene            46..1542
+                     /gene="NP"
+     CDS             46..1542
+                     /gene="NP"
+                     /codon_start=1
+                     /product="nucleoprotein"
+                     /protein_id="BBB04703.1"
+                     /translation="MATKGTKRSYEQMETDGERQNATEIRASVGKMIDGIGRFYIQMC
+                     TELKLSDYEGRLIQNSLTIERMVLSAFDERRNKYLEEHPSAGKDPKKTGGPIYRRVDG
+                     KWRRELILYDKEEIRRIWRQANNGDDATAGLTHMMIWHSNLNDATYQRTRALVRTGMD
+                     PRMCSLMQGSTLPRRSGAAGAAVKGVGTMVMELIRMIKRGINDRNFWRGENGRRTRIA
+                     YERMCNILKGKFQTAAQRTMVDQVRESRNPGNAEFEDLIFLARSALILRGSVAHKSCL
+                     PACVYGSAVASGYDFEREGYSLVGIDPFRLLQNSQVYSLIRPNENPAHKSQLVWMACH
+                     SAAFEDLRVSSFIRGTKVVPRGKLSTRGVQIASNENMETMESSTLELRSRYWAIRTRS
+                     GGNTNQQRASSGQISIQPTFSVQRNLPFDRPTIMAAFTGNTEGRTSDMRTEIIRLMES
+                     ARPEDVSFQGRGVFELSDEKATSPIVPSFDMSNEGSYFFGDNAEEYDN"
+ORIGIN      
+        1 agcaaaagca gggtagataa tcactcacag agtgacatcg aaatcatggc gaccaaaggc
+       61 accaaacgat cttacgaaca gatggagact gatggagaac gccagaatgc cactgaaatc
+      121 agagcatctg tcggaaaaat gattgatgga attggacgat tctacatcca aatgtgcacc
+      181 gaacttaaac tcagtgatta tgagggacgg ctgattcaga acagcttaac aatagagaga
+      241 atggtgctct ctgcttttga cgagaggagg aataaatatc tagaagaaca tcccagtgcg
+      301 gggaaagatc ctaagaaaac tggaggacct atatacagga gagtagatgg aaagtggagg
+      361 agagaactca tcctttatga caaagaagaa ataagacgaa tctggcgcca agctaataat
+      421 ggtgacgatg caacggctgg tctgactcac atgatgatct ggcactccaa tttgaatgat
+      481 gcaacttacc agaggacaag agctcttgtt cgcacaggaa tggatcccag gatgtgctca
+      541 ctgatgcagg gttcaaccct ccctaggagg tctggggccg caggtgctgc agtcaaagga
+      601 gttggaacaa tggtgatgga attgatcaga atgatcaaac gtgggatcaa tgatcggaac
+      661 ttctggaggg gtgagaatgg acggagaaca aggattgctt atgaaagaat gtgcaacatt
+      721 ctcaaaggga aatttcaaac agctgcacaa agaacaatgg tggatcaagt gagagagagc
+      781 cggaatccag gaaatgctga gttcgaagat ctcatctttt tagcacggtc tgcactcata
+      841 ttgagagggt cagttgctca caagtcctgc ctgcctgcct gtgtgtatgg atctgccgta
+      901 gccagtggat acgactttga aagagaggga tactctctag tcggaataga ccctttcaga
+      961 ctgcttcaaa acagccaagt atacagccta atcagaccaa atgagaatcc agcacacaag
+     1021 agtcaactgg tgtggatggc atgccattct gctgcatttg aagatctaag agtatcaagc
+     1081 ttcatcagag ggacgaaagt ggtcccaaga gggaagcttt ccactagagg agttcaaatt
+     1141 gcttccaatg aaaacatgga gactatggaa tcaagtaccc ttgaactgag aagcagatac
+     1201 tgggccataa ggaccagaag tggagggaac accaatcaac agagggcttc ctcgggccaa
+     1261 atcagcatac aacctacgtt ctcagtacag agaaatctcc cttttgacag accaaccatt
+     1321 atggcagcat tcactgggaa tacagagggg agaacatctg acatgagaac cgaaatcata
+     1381 aggctgatgg aaagtgcaag accagaagat gtgtctttcc aggggcgggg agtcttcgag
+     1441 ctctcggacg aaaaggcaac gagcccgatc gtgccctcct ttgacatgag taatgaagga
+     1501 tcttatttct tcggagacaa tgcagaggag tacgacaatt aaagaaaaat acccttgttt
+     1561 ctact
+//
+
