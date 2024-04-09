@@ -3,5 +3,3 @@ webservers:
     labserver:
       ansible_host: 207.211.190.108
       ansible_user: ubuntu
-      vars_files:
-        - sensitive_data.yml

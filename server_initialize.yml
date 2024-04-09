@@ -3,6 +3,7 @@
   become: yes # Run tasks as root
   vars_files:
     - clipseq.yml # Load the Conda environment file
+    - sensitive_data.yml # Load the sensitive data file
   # vault_password_file: .vault_pass.txt # Use the vault password file
 
   tasks:
@@ -50,10 +51,10 @@
     args:
       creates: "/home/ubuntu/.bashrc"
 
-  # - name: Copy Conda environment file to remote server
-  #   ansible.builtin.copy:
-  #     src: "clipseq.yml"
-  #     dest: "/home/ubuntu/clipseq.yml"
+  - name: Copy Conda environment file to remote server
+    ansible.builtin.copy:
+      src: "clipseq.yml"
+      dest: "/home/ubuntu/clipseq.yml"
 
   - name: Create Conda environment from environment.yml
     command: "~/miniconda3/bin/conda env create -f clipseq.yml"
