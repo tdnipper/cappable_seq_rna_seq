@@ -1,5 +1,8 @@
 webservers:
   hosts:
-    labserver:
+    labserver_aarch:
       ansible_host: 207.211.190.108
+      ansible_user: ubuntu
+    labserver_linux:
+      ansible_host:
       ansible_user: ubuntu

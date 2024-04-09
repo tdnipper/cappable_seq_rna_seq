@@ -1,15 +1,11 @@
 - name: Install Miniconda3 and create Conda environment
-  hosts: labserver # Host to run the playbook on
+  hosts: labserver_aarch # Host to run the playbook on
   become: yes # Run tasks as root
   vars_files:
     - clipseq.yml # Load the Conda environment file
-    - sensitive_data.yml # Load the sensitive data file
-  # vault_password_file: .vault_pass.txt # Use the vault password file
+    - sensitive_data_aarch.yml # Load the sensitive data file
 
   tasks:
-  # - name: Ping the remote server
-  #   ansible.builtin.ping:
-
   - name: Update package cache
     ansible.builtin.apt:
       update_cache: yes
