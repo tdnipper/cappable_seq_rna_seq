@@ -69,5 +69,5 @@ with open(gtf_file, "a") as gtf:
                     gene_type = line.split("=")[1].strip()
                     # Write info to GTF file once per transcript file line that begins with ">"
                     gtf.write(
-                        f'{gene_id}\t{source}\texon\t{start}\t{end}\t.\t+\t1\tgene_id "{gene_id}";\tgene_name "{seqname}";\ttranscript_id "{gene_id}";\ttranscript_name "{seqname}";\tgene_biotype "{gene_type}";\n'
+                        f'{gene_id}\t{source}\texon\t{start}\t{end}\t.\t+\t1\tgene_id "{gene_id}";\tgene_name "{seqname}";\ttranscript_id "{gene_id}_{seqname}";\ttranscript_name "{gene_type}";\tgene_biotype "{gene_type}";\n'
                     )
