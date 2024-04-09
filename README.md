@@ -16,7 +16,7 @@ Server initialization is a time consuming process requiring many user inputs. Fi
 
 ### Required startup tasks
 
-1. **Update the server.** The OS on the server is chosen when the instance is created. I usually choose the latest version of ubuntu due to its high compatibility. The included playbooks update and reboot the OS first similar to `apt update` and `apt upgrade` followed by `reboot`.
+1. **Update the server.** The OS on the server is chosen when the instance is created. I usually choose the latest version of ubuntu due to its high compatibility. The included playbooks update and reboot the OS, essentially using `apt update` and `apt upgrade` followed by `reboot`.
 
 2. **Install `Miniconda3`.** This is our package manager for python packages. The playbook will obtain the latest from the official URL and install it to the home directory.
 
@@ -28,11 +28,11 @@ This section is technical. More detail can be found in the online docs for `ansi
 
 To control access to these servers, oracle uses an `ssh_key` instead of a password. Obtain this file during instance creation and store it securely on your local machine. Limit access to the *owner only* by running `chmod 444` after downloading the file. `Ansible` can locate the key by creating a `sensitive_data.yml` file that includes the key's path and the corresponding server IP. Encrypt this file using `ansible-vault` and call the encrypted file using `vars_files` in the `playbook`.
 
-Store the password to decrypt the `sensitive_data.yml` file in a `.password_file.txt` on the local machine. Again, restrict access using `chmod 444`. Don't use git to back this up, protect it as it is the key to decrypting server security credientials. When running the `playbook` from the command line, use the `--vault-password-file` argument to provide the password.
+Store the password to decrypt the `sensitive_data.yml` file in a `.password_file.txt` on the local machine. Again, restrict access using `chmod 444`. Don't use git to back this up. Protect it as it is the key to decrypting server security credientials. When running the `playbook` from the command line, use the `--vault-password-file` argument to provide the password.
 
 ### Server inventory
 
-To specify what servers our `playbooks` can be run on, there is a `server_inventory.yml` file that contains the names of the servers, their IP addresses, and their usernames. `Ansible` needs this information to log in along with the security credentials described above. That means that this file needs to be edited to provide the IP address to the specific instance that you want to connect to and the name that `ansible` can recognize it by in the `playbook`. 
+To specify what servers our `playbooks` can be run on, there is a `server_inventory.yml` file that contains the names of the servers, their IP addresses, and their usernames. `Ansible` needs this information to log in along with the security credentials described above. That means that this file needs to be edited to provide the IP address to the specific instance that you want to connect to and the name that `ansible` can recognize it by in the `playbook`.
 
 When running the `playbook` from the command line, point `ansible` to the `server_inventory.yml` by using the `-i` flag.
 
