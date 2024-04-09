@@ -1,0 +1,61 @@
+- name: Install Miniconda3 and create Conda environment
+  hosts: labserver # Host to run the playbook on
+  become: yes # Run tasks as root
+  vars_files:
+    - clipseq.yml # Load the Conda environment file
+    - sensitive_data.yml # Load the sensitive data file
+  # vault_password_file: .vault_pass.txt # Use the vault password file
+
+  tasks:
+  # - name: Ping the remote server
+  #   ansible.builtin.ping:
+
+  - name: Update package cache
+    ansible.builtin.apt:
+      update_cache: yes
+      
+  - name: Upgrade all packages
+    ansible.builtin.apt:
+      upgrade: full
+
+  - name: Reboot the server
+    ansible.builtin.reboot:
+      reboot_timeout: 600
+      connect_timeout: 600
+      msg: "Reboot initiated by Ansible for system updates"
+      post_reboot_delay: 60
+  
+  - name: Create directory for Miniconda3 installation
+    ansible.builtin.file:
+      path: "/home/ubuntu/tmp"
+      state: directory
+
+  - name: Download Miniconda3 installer
+    ansible.builtin.get_url:
+      url: "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+      dest: "/home/ubuntu/tmp/Miniconda3-latest-Linux-x86_64.sh"
+      mode: 0755
+
+  - name: Install Miniconda3
+    command: "/home/ubuntu/tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /home/ubuntu/miniconda3"
+    args:
+      creates: "/home/ubuntu/miniconda3"
+  
+  - name: Cleanup Miniconda3 installer
+    command: "rm -rf /home/ubuntu/tmp/Miniconda3-latest-Linux-x86_64.sh"
+    args:
+      removes: "/home/ubuntu/tmp/Miniconda3-latest-Linux-x86_64.sh"
+
+  - name: Initialize Conda
+    command: "/home/ubuntu/miniconda3/bin/conda init bash"
+    args:
+      creates: "/home/ubuntu/.bashrc"
+
+  - name: Copy Conda environment file to remote server
+    ansible.builtin.copy:
+      src: "clipseq.yml"
+      dest: "/home/ubuntu/clipseq.yml"
+
+  - name: Create Conda environment from environment.yml
+    command: "~/miniconda3/bin/conda env create -f clipseq.yml"
+
