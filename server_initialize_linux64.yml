@@ -47,6 +47,9 @@
     args:
       creates: "/home/ubuntu/.bashrc"
 
+  - name: Update conda using conda-forge channel
+    command: "/home/ubuntu/miniconda3/bin/conda update -n base -c conda-forge --update-all -y"
+
   - name: Copy Conda environment file to remote server
     ansible.builtin.copy:
       src: "clipseq.yml"
