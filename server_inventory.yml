@@ -2,5 +2,6 @@ webservers:
   hosts:
     labserver:
       ansible_host: 207.211.190.108
-      ansible_private_key_file: "~/keys/ssh-key-2024-04-08.key"
       ansible_user: ubuntu
+      vars_files:
+        - sensitive_data.yml
