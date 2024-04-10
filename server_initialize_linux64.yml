@@ -23,7 +23,7 @@
   
   - name: Create directory for Miniconda3 installation
     ansible.builtin.file:
-      path: "/home/ubuntu/tmp"
+      path: "/home/ubuntu/tmp" # Relative paths don't work in ansible, use absoltue paths
       state: directory
 
   - name: Download Miniconda3 installer
