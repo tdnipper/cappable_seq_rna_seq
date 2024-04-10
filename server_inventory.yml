@@ -3,6 +3,6 @@ webservers:
     labserver_aarch:
       ansible_host: 207.211.190.108
       ansible_user: ubuntu
-    labserver_linux:
-      ansible_host:
+    tn_rna_seq:
+      ansible_host: 149.130.218.29
       ansible_user: ubuntu

@@ -1,9 +1,9 @@
 - name: Install Miniconda3 and create Conda environment
-  hosts: labserver # Host to run the playbook on
+  hosts: tn_rna_seq # Host to run the playbook on
   become: yes # Run tasks as root
   vars_files:
     - clipseq.yml # Load the Conda environment file
-    - sensitive_data_linux.yml # Load the sensitive data file
+    - sensitive_data_tn_rna_seq.yml # Load the sensitive data file
 
   tasks:
   - name: Update package cache
@@ -56,5 +56,5 @@
       dest: "/home/ubuntu/clipseq.yml"
 
   - name: Create Conda environment from environment.yml
-    command: "~/miniconda3/bin/conda env create -f clipseq.yml"
+    command: "/home/ubuntu/miniconda3/bin/conda env create -f clipseq.yml"
 
