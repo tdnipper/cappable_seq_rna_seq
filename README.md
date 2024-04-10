@@ -36,6 +36,12 @@ To specify what servers our `playbooks` can be run on, there is a `server_invent
 
 When running the `playbook` from the command line, point `ansible` to the `server_inventory.yml` by using the `-i` flag.
 
+### Storage
+
+This section is also technical. Sorry.
+
+Block volumes are the best storage option from oracle because they can be transferred between instances (servers) if needed, and the per gigabyte cost is lower than simply expanding the boot volume. However, they require more setup work. Once the `playbook` has run and the server is configured, the block volume can be partitioned, formatted, and mounted. Block volumes have to be attached via the oracle interface to an instance first. Then oracle provies iSCSI commands to connect the block volume to the instance (simple copy/paste, I don't actually know what these do yet). Once connected, the block volume will show up using `fdisk -l`. Now it needs to be formatted for linux using `parted` or `gparted`. Then an `ext4` filesystem must be installed using `mkfs`. Once all this is done, mount it to a folder of your choosing to access it. I clone github repos into this folder for persistance and bulk storage of data.
+
 ## Genome
 
 Reads will align to both human and WSN genomes as we expect viral RNAs to be captured in cappable-seq. Therefore, I will create a custom combo of hg38 annotated from RefSeq and our lab's WSN genome with custom annotations.
