@@ -26,9 +26,9 @@ Server initialization is a time consuming process requiring many user inputs. Fi
 
 This section is technical. More detail can be found in the online docs for `ansible`.
 
-To control access to these servers, oracle uses an `ssh_key` instead of a password. Obtain this file during instance creation and store it securely on your local machine. Limit access to the *owner only* by running `chmod 444` after downloading the file. `Ansible` can locate the key by creating a `sensitive_data.yml` file that includes the key's path and the corresponding server IP. Encrypt this file using `ansible-vault` and call the encrypted file using `vars_files` in the `playbook`.
+To control access to these servers, oracle uses an `ssh_key` instead of a password. Obtain this file during instance creation and store it securely on your local machine. Limit access to the *owner only* by running `chmod 400` after downloading the file. `Ansible` can locate the key by creating a `sensitive_data.yml` file that includes the key's path and the corresponding server IP. Encrypt this file using `ansible-vault` and call the encrypted file using `vars_files` in the `playbook`.
 
-Store the password to decrypt the `sensitive_data.yml` file in a `.password_file.txt` on the local machine. Again, restrict access using `chmod 444`. Don't use git to back this up. Protect it as it is the key to decrypting server security credientials. When running the `playbook` from the command line, use the `--vault-password-file` argument to provide the password.
+Store the password to decrypt the `sensitive_data.yml` file in a `.password_file.txt` on the local machine. Again, restrict access using `chmod 400`. Don't use git to back this up. Protect it as it is the key to decrypting server security credientials. When running the `playbook` from the command line, use the `--vault-password-file` argument to provide the password.
 
 ### Server inventory
 
