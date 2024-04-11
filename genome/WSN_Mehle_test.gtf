@@ -14,4 +14,4 @@ WSN_NP	LC333186.1	exon	46	1542	.	+	1	gene_id "WSN_NP";	gene_name "NP";	transcrip
 WSN_NA	LC333187.1	exon	20	1381	.	+	1	gene_id "WSN_NA";	gene_name "NA";	transcript_id "WSN_NA_NA";	transcript_name "neuraminidase";	gene_biotype "neuraminidase";
 WSN_M	LC333188.1	exon	26	784	.	+	1	gene_id "WSN_M";	gene_name "M";	transcript_id "WSN_M_M";	transcript_name "M1 protein";	gene_biotype "M1 protein";
 WSN_NS	LC333189.1	exon	27	719	.	+	1	gene_id "WSN_NS";	gene_name "NS";	transcript_id "WSN_NS_NS";	transcript_name "nonstructural protein 1";	gene_biotype "nonstructural protein 1";
-WSN_M	Homemade	exon	29	1007	.	+	1	gene_id "WSN_M";	gene_name "M";	transcript_id "WSN_M_M";	transcript_name "M2 protein";	gene_biotype "M2 protein";
+# WSN_M	Homemade	exon	29	1007	.	+	1	gene_id "WSN_M";	gene_name "M";	transcript_id "WSN_M_M";	transcript_name "M2 protein";	gene_biotype "M2 protein";
