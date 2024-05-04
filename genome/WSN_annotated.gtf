@@ -1,4 +1,3 @@
-seqname	source	feature	start	end	score	strand	frame	attribute
 WSN_HA	.	gene	1	1775	.	-	.	ID=WSN_HA;Name=HA;gene=WSN_HA;product=WSN hemagglutinin
 WSN_HA	.	transcript	1	1775	.	+	.	ID=HA_transcript;Parent=WSN_HA;gene=WSN_HA;product=WSN hemagglutinin
 WSN_HA	.	exon	1	1775	.	+	.	ID=HA_exon;Parent=WSN_HA;gene=WSN_HA;product=WSN hemagglutinin
@@ -39,3 +38,6 @@ WSN_M	.	exon	740	1027	.	+	.	ID=M2_exon_2;Parent=M_transcript;gene=WSN_M;product=
 WSN_M	.	CDS	29	784	.	+	0	ID=M1_CDS;Parent=M_transcript;gene=WSN_M;product=WSN matrix protein
 WSN_M	.	CDS	29	51	.	+	0	ID=M2_CDS_1;Parent=M_transcript;gene=WSN_M;product=WSN M2 protein
 WSN_M	.	CDS	740	1007	.	+	0	ID=M2_CDS_2;Parent=M_transcript;gene=WSN_M;product=WSN M2 protein
+FFLUC	.	gene	1	1656	.	+	.	ID=FLUC;Name=FLUC;product=firefly luciferase
+FLUC	.	transcript	1	1656	.	+	.	ID=FLUC_transcript;Parent=FLUC;gene=FLUC;product=firefly luciferase
+FLUC	.	CDS	1	1656	.	+	0	ID=FLUC_CDS;Parent=FLUC_transcript;gene=FLUC;product=firefly luciferase
