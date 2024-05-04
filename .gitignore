@@ -2,3 +2,8 @@
 genome/genomic.gtf
 genome/GCF_000001405.40_GRCh38.p14_genomic.fasta
 raw_data
+qc_reports
+trimmed_reads
+ribodepleted_reads
+genome/hybrid_genome.gtf
+genome/hybrid_genome.fasta
