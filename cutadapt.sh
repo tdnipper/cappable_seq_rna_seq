@@ -3,7 +3,7 @@ sudo mkdir trimmed_reads/
 sudo chown ubuntu:ubuntu trimmed_reads/
 sudo chmod 775 trimmed_reads/
 
-mkdir qc_reports/cutadapt/
+mkdir -p qc_reports/cutadapt/
 sudo chown ubuntu:ubuntu qc_reports/cutadapt/
 sudo chmod 775 qc_reports/cutadapt/
 
