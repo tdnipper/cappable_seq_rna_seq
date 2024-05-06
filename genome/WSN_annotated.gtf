@@ -28,7 +28,7 @@ WSN_NS	.	exon	1	890	.	+	.	ID=NS1_exon;Parent=NS_transcript;gene=WSN_NS;transcrip
 WSN_NS	.	exon	1	56	.	+	.	ID=NS2_exon_1;Parent=NS_transcript;gene=WSN_NS;transcript_id=NS_transcript;gene_id=WSN_NS;product=WSN nonstructural protein 2
 WSN_NS	.	exon	529	890	.	+	.	ID=NS2_exon_2;Parent=NS_transcript;gene=WSN_NS;transcript_id=NS_transcript;gene_id=WSN_NS;product=WSN nonstructural protein 2
 WSN_NS	.	CDS	27	719	.	+	0	ID=NS1_CDS;Parent=NS_transcript;product=WSN nonstructural protein 1;gene_id=WSN_NS
-WSN_NS	.	CDS	30	56	.	+	0	ID=NS2_CDS_1;Parent=NS_transcript;product=WSN nonstructural protein 2;gene_id=WSN_NS
+WSN_NS	.	CDS	27	56	.	+	0	ID=NS2_CDS_1;Parent=NS_transcript;product=WSN nonstructural protein 2;gene_id=WSN_NS
 WSN_NS	.	CDS	529	864	.	+	0	ID=NS2_CDS_2;Parent=NS_transcript;product=WSN nonstructural protein 2;gene_id=WSN_NS
 WSN_M	.	gene	1	1027	.	-	.	ID=WSN_M;gene=WSN_M;Name=M
 WSN_M	.	transcript	1	1027	.	+	.	ID=M_transcript;gene=WSN_M;Parent=WSN_M
