@@ -10,3 +10,5 @@ genome/hybrid_genome.fasta
 genome/hybrid_annotated.gtf
 genome/star_index
 ribodepleted_star_alignments
+genome/genomic.gff
+genome/hybrid_annotated.gff
