@@ -28,7 +28,7 @@ for file in ribodepleted_reads/*_trimmed_nonrRNA.fq.gz; do
     STAR --runThreadN 4 \
         --genomeDir genome/star_index \
         --readFilesIn $file \
-        --outFileNamePrefix ribodepleted_star_alignments/${p}_transcriptome/${p}_ribodepleted_ \
+        --outFileNamePrefix ribodepleted_star_alignments/${p}/${p}_ribodepleted_ \
         --quantMode TranscriptomeSAM \
         --genomeLoad LoadAndKeep \
         --outReadsUnmapped Fastx \
