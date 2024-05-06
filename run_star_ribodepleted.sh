@@ -8,7 +8,7 @@ trap cleanup EXIT
 cleanup () {
     echo "STAR alignment failed, removing genome from memory"
     STAR --genomeLoad Remove \
-        --genomeDir genome/star_indices \
+        --genomeDir genome/star_index \
         --outFileNamePrefix star_alignments/exit/exit # remove the genome from memory
     sudo rm -R star_alignments/exit || true # remove the exit folder
     echo "STAR genome removal complete"
@@ -26,7 +26,7 @@ for file in ribodepleted_reads/*_trimmed_nonrRNA.fq.gz; do
     # d="${p}_transcriptome"
     echo "Aligning $p"
     STAR --runThreadN 4 \
-        --genomeDir genome/star_indices \
+        --genomeDir genome/star_index \
         --readFilesIn $file \
         --outFileNamePrefix ribodepleted_star_alignments/${p}_transcriptome/${p}_ribodepleted_ \
         --quantMode TranscriptomeSAM \
@@ -56,7 +56,7 @@ done
 # Cleanup RAM
 echo "STAR alignment complete, removing genome from memory"
 STAR --genomeLoad Remove \
-    --genomeDir genome/star_indices \
+    --genomeDir genome/star_index \
     --outFileNamePrefix star_alignments/exit/exit # remove the genome from memory
 sudo rm -R star_alignments/exit # remove the exit folder
 echo "STAR genome removal complete"
