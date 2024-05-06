@@ -7,3 +7,5 @@ trimmed_reads
 ribodepleted_reads
 genome/hybrid_genome.gtf
 genome/hybrid_genome.fasta
+genome/hybrid_annotated.gtf
+genome/star_index
