@@ -1,3 +1,4 @@
+##gff-version 3
 WSN_HA	.	gene	1	1775	.	-	.	ID=WSN_HA;Name=HA;gene=WSN_HA;product=WSN hemagglutinin
 WSN_HA	.	transcript	1	1775	.	+	.	ID=HA_transcript;Parent=WSN_HA;gene=WSN_HA;product=WSN hemagglutinin
 WSN_HA	.	exon	1	1775	.	+	.	ID=HA_exon;Parent=WSN_HA;gene=WSN_HA;product=WSN hemagglutinin;transcript_id=HA_transcript;gene_id=WSN_HA
@@ -8,7 +9,7 @@ WSN_NA	.	exon	1	1409	.	+	.	ID=NA_exon;Parent=WSN_NA;gene=WSN_NA;product=WSN neur
 WSN_NA	.	CDS	20	1381	.	+	0	ID=NA_CDS;Parent=NA_transcript;gene=WSN_NA;product=WSN neuraminidase
 WSN_PB2	.	gene	1	2341	.	-	.	ID=WSN_PB2;Name=PB2;gene=WSN_PB2;product=WSN polymerase basic 2 subunit
 WSN_PB2	.	transcript	1	2341	.	+	.	ID=PB2_transcript;Parent=WSN_PB2;gene=WSN_PB2;product=WSN polymerase basic 2 subunit
-WSN_PB2	.	exon	1	2341	.	+	.	ID=PB2_exon;Parent=PB2_transcript; gene=WSN_PB2;product=WSN polymerase basic 2 subunit;transcript_id=PB2_transcript;gene_id=WSN_PB2
+WSN_PB2	.	exon	1	2341	.	+	.	ID=PB2_exon;Parent=PB2_transcript;gene=WSN_PB2;product=WSN polymerase basic 2 subunit;transcript_id=PB2_transcript;gene_id=WSN_PB2
 WSN_PB2	.	CDS	28	2307	.	+	0	ID=PB2_CDS;Parent=PB2_transcript;gene=WSN_PB2;product=WSN polymerase basic 2 subunit
 WSN_PB1	.	gene	1	2341	.	-	.	ID=WSN_PB1;Name=PB1;gene=WSN_PB1;product=WSN polymerase basic 1 subunit
 WSN_PB1	.	transcript	1	2341	.	+	.	ID=PB1_transcript;Parent=WSN_PB1;gene=WSN_PB1;product=WSN polymerase basic 1 subunit

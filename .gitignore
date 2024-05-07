@@ -12,3 +12,4 @@ genome/star_index
 ribodepleted_star_alignments
 genome/genomic.gff
 genome/hybrid_annotated.gff
+genome/*
