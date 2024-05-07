@@ -13,5 +13,5 @@ ribodepleted_star_alignments
 genome/genomic.gff
 genome/hybrid_annotated.gff
 genome/*
-salmon_quantifications/*
+salmon_quantification/*
 env.sh
