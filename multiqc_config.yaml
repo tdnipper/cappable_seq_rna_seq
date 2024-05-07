@@ -1,0 +1,27 @@
+title: "DUSP11 CLIP-seq"
+subtitle: "MultiQC before peak calling"
+
+# Set the order of modules
+
+module_order:
+  - fastqc:
+      name: "FastQC" 
+      anchor: "fastqc"
+      info: "This section of the report shows FastQC results after adapter trimming."
+      path_filters:
+        - "qc_reports/raw_data/*_fastqc.zip"
+  - cutadapt
+  - sortmerna
+  - star:
+      name: "STAR"
+      anchor: "star"
+      info: "This section of the report shows STAR alignment results/"
+      path_filters:
+        - "ribodepleted_star_alignments/*/*_Log.out"
+  - samtools:
+      name: "Samtools-stats"
+      anchor: "samtools_stats"
+      info: "This section of the report shows Samtools stats results for the star alignment."
+      path_filters:
+        # - "qc_reports/samtools-stats/*_ribodepleted_star.stats"
+  - salmon
