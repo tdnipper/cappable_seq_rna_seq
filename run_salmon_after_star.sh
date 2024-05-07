@@ -26,3 +26,9 @@ for file in $(find ribodepleted_star_alignments -name "Aligned.toTranscriptome.o
         -p 4 \
         -o ribodepleted_star_alignments/salmon_quantifications/${name}
 done
+
+# Rename files with sample name
+for file in $(find ribodepleted_star_alignments/salmon_quantifications -name "quant.sf"); do
+    name=$(dirname $file | awk -F/ '{print $NF}')
+    mv $file ribodepleted_star_alignments/salmon_quantifications/${name}_quant.sf
+done
