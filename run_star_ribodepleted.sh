@@ -28,28 +28,28 @@ for file in ribodepleted_reads/*_trimmed_nonrRNA.fq.gz; do
     STAR --runThreadN 4 \
         --genomeDir genome/star_index \
         --readFilesIn $file \
-        --outFileNamePrefix ribodepleted_star_alignments/${p}/${p}_ribodepleted_ \
+        --outFileNamePrefix ribodepleted_star_alignments/${p}/${p}_ \
         --quantMode TranscriptomeSAM \
         --genomeLoad LoadAndKeep \
         --outReadsUnmapped Fastx \
         --readFilesCommand zcat
     echo "Converting $p to bam"
-    samtools view -o ribodepleted_star_alignments/${p}/${p}_ribodepleted_aligned.bam \
-        ribodepleted_star_alignments/${p}/${p}_ribodepleted_Aligned.out.sam # convert to bam
-    sudo rm ribodepleted_star_alignments/${p}/${p}_ribodepleted_Aligned.out.sam # remove the sam file
+    samtools view -o ribodepleted_star_alignments/${p}/${p}_aligned.bam \
+        ribodepleted_star_alignments/${p}/${p}_Aligned.out.sam # convert to bam
+    sudo rm ribodepleted_star_alignments/${p}/${p}_Aligned.out.sam # remove the sam file
     echo "Sorting $p"
-    samtools sort ribodepleted_star_alignments/${p}/${p}_ribodepleted_Aligned.toTranscriptome.out.bam \
-        -o ribodepleted_star_alignments/${p}/${p}_ribodepleted_transcriptome_sorted.bam \
+    samtools sort ribodepleted_star_alignments/${p}/${p}_Aligned.toTranscriptome.out.bam \
+        -o ribodepleted_star_alignments/${p}/${p}_transcriptome_sorted.bam \
         -@ 4 # sort the transcriptome bam file
-    samtools sort ribodepleted_star_alignments/${p}/${p}_ribodepleted_aligned.bam \
-        -o ribodepleted_star_alignments/${p}/${p}_ribodepleted_sorted.bam \
+    samtools sort ribodepleted_star_alignments/${p}/${p}_aligned.bam \
+        -o ribodepleted_star_alignments/${p}/${p}_sorted.bam \
         -@ 4 # sort the bam file
     echo "Indexing $p"
-    samtools index ribodepleted_star_alignments/${p}/${p}_ribodepleted_sorted.bam \
-        -o ribodepleted_star_alignments/${p}/${p}_ribodepleted_sorted.bai \
+    samtools index ribodepleted_star_alignments/${p}/${p}_sorted.bam \
+        -o ribodepleted_star_alignments/${p}/${p}_sorted.bai \
         -@ 4 # index the sorted bam file
-    samtools index ribodepleted_star_alignments/${p}/${p}_ribodepleted_transcriptome_sorted.bam \
-        -o ribodepleted_star_alignments/${p}/${p}_ribodepleted_transcriptome_sorted.bai \
+    samtools index ribodepleted_star_alignments/${p}/${p}_transcriptome_sorted.bam \
+        -o ribodepleted_star_alignments/${p}/${p}_transcriptome_sorted.bai \
         -@ 4 # index the sorted transcriptome bam file
 done
 
