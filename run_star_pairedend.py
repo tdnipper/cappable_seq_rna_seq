@@ -29,7 +29,7 @@ reads = {}
 
 for dirpath, dirnames, filenames in os.walk(reads_dir):
     for filename in filenames:
-        if not filename.endswith(".log"):
+        if not filename.endswith(".log") and ("nonrRNA") in filename:
             name = filename.split("_R")[0]
             if name not in reads:
                 reads[name] = []
@@ -41,7 +41,7 @@ for key in reads:
 
 # Run star alignment on each sample in paired-end mode
 for key in reads:
-    keyname = key.replace("_nonrRNA_", "")
+    keyname = key.replace("_nonrRNA", "")
     subprocess.run(["STAR",
                     "--runThreadN",
                     "4",
