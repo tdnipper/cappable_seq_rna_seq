@@ -4,12 +4,7 @@ subtitle: "MultiQC before peak calling"
 # Set the order of modules
 
 module_order:
-  - fastqc:
-      name: "FastQC" 
-      anchor: "fastqc"
-      info: "This section of the report shows FastQC results after adapter trimming."
-      path_filters:
-        - "qc_reports/raw_data/*_fastqc.zip"
+  - fastqc
   - cutadapt
   - sortmerna
   - star:
