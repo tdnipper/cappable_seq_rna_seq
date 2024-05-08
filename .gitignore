@@ -19,3 +19,4 @@ env.sh
 .env
 logs
 ribodepleted_reads.archive
+star_alignment/*
