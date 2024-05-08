@@ -2,6 +2,10 @@ import os
 import shutil
 import subprocess
 
+__name__ = "run_star_pairedend"
+__author__ = "Thomas"
+__date__ = "2024-05-07"
+
 basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
@@ -27,6 +31,10 @@ for dirpath, dirnames, filenames in os.walk(reads_dir):
         if name not in reads:
             reads[name] = []
         reads[name].append(filename)
+
+for key in reads:
+    if len(reads[key]) != 2:
+        raise ValueError(f"Error: {key} does not have exactly 2 read files")
 
 for key in reads:
     subprocess.run(["STAR",
@@ -64,7 +72,7 @@ for key in reads:
                     "sort",
                     f"{star_dir}/{key}/{key}_aligned.bam",
                     "-o",
-                    f"{star_dir}/{key}/{key}_sorted.bam",
+                    f"{star_dir}/{key}/{key}_coord_sorted.bam",
                     "-@",
                     "4"])
     subprocess.run(["samtools",
@@ -74,15 +82,17 @@ for key in reads:
                     "4"])
     subprocess.run(["samtools",
                     "index",
-                    f"{star_dir}/{key}/{key}_sorted.bam",
+                    f"{star_dir}/{key}/{key}_coord_sorted.bam",
                     "-@",
                     "4"])
-    
-subprocess.run(["STAR",
-                "--genomeLoad Remove",
-                "--genomeDir",
-                star_index_dir,
-                "--outFileNamePrefix",
-                f"{star_dir}/exit/exit"])
-shutil.rmtree(f"{star_dir}/exit")
-    
+
+if os.path.exists(f"{star_dir}/exit"):
+    subprocess.run(["STAR",
+                    "--genomeLoad", 
+                    "Remove",
+                    "--genomeDir",
+                    star_index_dir,
+                    "--outFileNamePrefix",
+                    f"{star_dir}/exit/exit"])
+    shutil.rmtree(f"{star_dir}/exit")
+        
