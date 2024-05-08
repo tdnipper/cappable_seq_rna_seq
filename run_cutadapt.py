@@ -51,6 +51,8 @@ for key in replicates:
                     ])
 
 subprocess.run(["fastqc",
-                f"{trimmed_dir}/*.fastq.gz",
+                f"{trimmed_dir}/*",
                 "-o",
-                f"{basedir}/fastqc/trimmed_reads/"])
+                f"{basedir}/fastqc/trimmed_reads/",
+                "-t",
+                "3"])
