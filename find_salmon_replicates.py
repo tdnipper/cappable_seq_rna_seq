@@ -13,12 +13,12 @@ __date__ = "2024-05-07"
 # containing the Salmon output files for each sample with replicates combined.
 
 # Define the path to the directory containing the Salmon output files
-salmon_dir = "salmon_quantification"
-reads_dir = "ribodepleted_reads/"
-salmon_index_dir = "genome/salmon_index"
-
+basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
-PGID = os.getgid()
+PGID = os.getgid
+salmon_dir = f"{basedir}/salmon_quantification/"
+reads_dir = f"{basedir}/ribodepleted_reads/"
+salmon_index_dir = f"{basedir}/genome/salmon_index/"
 
 if not os.path.exists(salmon_dir):
     os.mkdir(salmon_dir)
@@ -62,7 +62,8 @@ for key in replicates:
                     "-l",
                     "A",
                     "-r",
-                    reads_dir + replicates[key][0] + " " + reads_dir + replicates[key][1],
+                    f"<(cat {reads_dir + replicates[key][0]} {reads_dir + replicates[key][1]})"
+                    # reads_dir + replicates[key][0] + " " + reads_dir + replicates[key][1],
                     "--validateMappings",
                     "-p",
                     "4",
