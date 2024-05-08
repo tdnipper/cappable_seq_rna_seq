@@ -23,7 +23,6 @@ sudo chmod -R 775 /home/ubuntu/blockvolume/dusp11_clip-seq/ribodepleted_star_ali
 for file in ribodepleted_reads/*_trimmed_nonrRNA.fq.gz; do
     g=$(basename "$file" _trimmed_nonrRNA.fq.gz)
     p=${g#ultraplex_demux_}
-    # d="${p}_transcriptome"
     echo "Aligning $p"
     STAR --runThreadN 4 \
         --genomeDir genome/star_index \

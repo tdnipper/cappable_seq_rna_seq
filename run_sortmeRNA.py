@@ -6,7 +6,7 @@ PUID = os.getuid()
 PGID = os.getgid()
 trimmed_reads_dir = f"{basedir}/trimmed_reads/"
 ribofile = f"{basedir}/human_rRNAs.fasta"
-sort_dir = f"{basedir}/ribodepleted_reads/"
+sort_dir = f"{basedir}/ribodepleted_reads"
 
 if not os.path.exists(trimmed_reads_dir):
     raise FileNotFoundError(f"Error: trimmed_reads directory does not exist at {trimmed_reads_dir}")
