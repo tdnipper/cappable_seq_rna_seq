@@ -1,5 +1,6 @@
 import os
 import subprocess
+from filename_utils import get_filenames
 
 basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
@@ -24,14 +25,14 @@ if not os.path.exists(f"{basedir}/fastqc/trimmed_reads"):
     os.makedirs(f"{basedir}/fastqc/trimmed_reads")
     os.chown(f"{basedir}/fastqc/trimmed_reads", PUID, PGID)
 
-replicates = {}
+replicates = get_filenames(raw_dir)
 
-for dirpath, dirnames, filenames in os.walk(raw_dir):
-    for file in filenames:
-        name = file.split("_R")[0]
-        if name not in replicates:
-            replicates[name] = []
-        replicates[name].append(file)
+# for dirpath, dirnames, filenames in os.walk(raw_dir):
+#     for file in filenames:
+#         name = file.split("_R")[0]
+#         if name not in replicates:
+#             replicates[name] = []
+#         replicates[name].append(file)
 
 for key in replicates:
     subprocess.run(["cutadapt",

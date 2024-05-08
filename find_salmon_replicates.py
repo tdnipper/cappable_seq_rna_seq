@@ -3,6 +3,7 @@
 import os
 import sys
 import subprocess
+from filename_utils import get_filenames
 
 __name__ = "find_salmon_replicates"
 __author__ = "Thomas"
@@ -45,14 +46,14 @@ if not os.path.exists(salmon_index_dir):
 # Find replicate files in reads_dir and run salmon quantification on them, 
 # combining the replicates for each sample
 
-replicates = {}
-for dirpath, dirnames, filenames in os.walk(reads_dir):
-    for file in filenames:
-        if "nonrRNA" in file and file.notendswith(".log"): #might not work
-            name = file.split("_R")[0]
-            if name not in replicates:
-                replicates[name] = []
-            replicates[name].append(file)
+replicates = get_filenames(reads_dir)
+# for dirpath, dirnames, filenames in os.walk(reads_dir):
+#     for file in filenames:
+#         if "nonrRNA" in file and file.notendswith(".log"): #might not work
+#             name = file.split("_R")[0]
+#             if name not in replicates:
+#                 replicates[name] = []
+#             replicates[name].append(file)
 
 for key in replicates:
     subprocess.run(["salmon",

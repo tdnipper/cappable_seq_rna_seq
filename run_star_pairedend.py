@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+from filename_utils import get_filenames
 
 # This script runs star on paired end R1 R2 reads after ribodepletion
 
@@ -25,15 +26,17 @@ star_index_dir = f"{basedir}/genome/star_index"
 if not os.path.exists(star_index_dir):
     raise FileNotFoundError(f"Error: STAR index directory does not exist at {star_index_dir}")
 
-reads = {}
+reads = get_filenames(reads_dir)
 
-for dirpath, dirnames, filenames in os.walk(reads_dir):
-    for filename in filenames:
-        if not filename.endswith(".log") and ("nonrRNA") in filename:
-            name = filename.split("_R")[0]
-            if name not in reads:
-                reads[name] = []
-            reads[name].append(filename)
+# for dirpath, dirnames, filenames in os.walk(reads_dir):
+#     for filename in filenames:
+#         if not filename.endswith(".log") and ("nonrRNA") in filename:
+#             name = filename.split("_R")[0]
+#             if name not in reads:
+#                 reads[name] = []
+#             reads[name].append(filename)
+
+
 
 for key in reads:
     if len(reads[key]) != 2:

@@ -1,6 +1,7 @@
 import os
 import subprocess
 import shutil
+from filename_utils import get_filenames
 
 basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
@@ -19,14 +20,14 @@ if not os.path.exists(sort_dir):
     os.mkdir(sort_dir)
     os.chown(sort_dir, PUID, PGID)
 
-replicates = {}
+replicates = get_filenames(trimmed_reads_dir)
 
-for dirpath, dirnames, filenames in os.walk(trimmed_reads_dir):
-    for file in filenames:
-        name = file.split("R")[0]
-        if name not in replicates:
-            replicates[name] = []
-        replicates[name].append(file)
+# for dirpath, dirnames, filenames in os.walk(trimmed_reads_dir):
+#     for file in filenames:
+#         name = file.split("R")[0]
+#         if name not in replicates:
+#             replicates[name] = []
+#         replicates[name].append(file)
 
 for key in replicates:
     # key = key.strip("_")
