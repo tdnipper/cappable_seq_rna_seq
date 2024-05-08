@@ -2,6 +2,8 @@ import os
 import shutil
 import subprocess
 
+# This script runs star on paired end R1 R2 reads after ribodepletion
+
 __name__ = "run_star_pairedend"
 __author__ = "Thomas"
 __date__ = "2024-05-07"

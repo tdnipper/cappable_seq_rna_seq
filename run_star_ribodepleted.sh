@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#####################
+# DEPRECIATED IN FAVOR OF run_star_ribodepleted.sh
+#####################
+
 source env.sh
 
 set -e
