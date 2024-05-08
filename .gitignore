@@ -18,3 +18,4 @@ env.sh
 .env.py
 .env
 logs
+ribodepleted_reads.archive
