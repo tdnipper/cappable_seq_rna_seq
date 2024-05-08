@@ -22,8 +22,8 @@ salmon index \
     -i genome/salmon_index
 fi
 
-for file in $(find ribodepleted_reads/ -name "*trimmed_nonrRNA.fq.gz"); do
-    name=$(basename $file "_trimmed_nonrRNA.fq.gz")
+for file in $(find ribodepleted_reads/ -name "*_nonrRNA.fq.gz"); do
+    name=$(basename $file "_nonrRNA.fq.gz")
     echo "Quantifying ${name}"
     salmon quant \
         -i genome/salmon_index \
@@ -34,11 +34,9 @@ for file in $(find ribodepleted_reads/ -name "*trimmed_nonrRNA.fq.gz"); do
         -o salmon_quantifications/${name} \
         --writeUnmappedNames \
         --seqBias \
-        --gcBias
+        --gcBias \
+        --reduceGCMemory
 done
-
-python find_salmon_files.py
-
 
 # Rename quant.sf files to include sample name from subdir
 for file in $(find salmon_quantifications -name "quant.sf"); do

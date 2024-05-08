@@ -27,18 +27,21 @@ reads = {}
 
 for dirpath, dirnames, filenames in os.walk(reads_dir):
     for filename in filenames:
-        name = filename.split("_R")[0]
-        if name not in reads:
-            reads[name] = []
-        reads[name].append(filename)
+        if not filename.endswith(".log"):
+            name = filename.split("_R")[0]
+            if name not in reads:
+                reads[name] = []
+            reads[name].append(filename)
 
 for key in reads:
     if len(reads[key]) != 2:
         raise ValueError(f"Error: {key} does not have exactly 2 read files")
 
+# Run star alignment on each sample in paired-end mode
 for key in reads:
+    keyname = key.replace("_nonrRNA_", "")
     subprocess.run(["STAR",
-                    "-runThreadN",
+                    "--runThreadN",
                     "4",
                     "--genomeDir",
                     star_index_dir,
@@ -46,7 +49,7 @@ for key in reads:
                     f"{reads_dir}/{reads[key][0]}",
                     f"{reads_dir}/{reads[key][1]}",
                     "--outFileNamePrefix",
-                    f"{star_dir}/{key}/{key}_",
+                    f"{star_dir}/{keyname}/{keyname}_",
                     "--quantMode",
                     "TranscriptomeSAM",
                     "--genomeLoad",
@@ -55,37 +58,39 @@ for key in reads:
                     "Fastx",
                     "--readFilesCommand",
                     "zcat"])
+    # Sort and index bam files
     subprocess.run(["samtools",
                     "view",
-                    f"{star_dir}/{key}/{key}_Aligned.out.sam",
+                    f"{star_dir}/{keyname}/{keyname}_Aligned.out.sam",
                     "-o",
-                    f"{star_dir}/{key}/{key}_aligned.bam"])
-    os.remove(f"{star_dir}/{key}/{key}_Aligned.out.sam")
+                    f"{star_dir}/{keyname}/{keyname}_aligned.bam"])
+    os.remove(f"{star_dir}/{keyname}/{keyname}_Aligned.out.sam")
     subprocess.run(["samtools",
                     "sort",
-                    f"{star_dir}/{key}/{key}_Aligned.toTranscriptome.out.bam",
+                    f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.out.bam",
                     "-o",
-                    f"{star_dir}/{key}/{key}_Aligned.toTranscriptome.sorted.bam",
+                    f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.sorted.bam",
                     "-@",
                     "4"])
     subprocess.run(["samtools",
                     "sort",
-                    f"{star_dir}/{key}/{key}_aligned.bam",
+                    f"{star_dir}/{keyname}/{keyname}_aligned.bam",
                     "-o",
-                    f"{star_dir}/{key}/{key}_coord_sorted.bam",
+                    f"{star_dir}/{keyname}/{keyname}_coord_sorted.bam",
                     "-@",
                     "4"])
     subprocess.run(["samtools",
                     "index",
-                    f"{star_dir}/{key}/{key}_Aligned.toTranscriptome.sorted.bam",
+                    f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.sorted.bam",
                     "-@",
                     "4"])
     subprocess.run(["samtools",
                     "index",
-                    f"{star_dir}/{key}/{key}_coord_sorted.bam",
+                    f"{star_dir}/{keyname}/{keyname}_coord_sorted.bam",
                     "-@",
                     "4"])
 
+# Clean up
 if os.path.exists(f"{star_dir}/exit"):
     subprocess.run(["STAR",
                     "--genomeLoad", 

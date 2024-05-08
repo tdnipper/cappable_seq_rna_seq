@@ -15,7 +15,7 @@ __date__ = "2024-05-07"
 # Define the path to the directory containing the Salmon output files
 basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
-PGID = os.getgid
+PGID = os.getgid()
 salmon_dir = f"{basedir}/salmon_quantification/"
 reads_dir = f"{basedir}/ribodepleted_reads/"
 salmon_index_dir = f"{basedir}/genome/salmon_index/"
@@ -48,8 +48,8 @@ if not os.path.exists(salmon_index_dir):
 replicates = {}
 for dirpath, dirnames, filenames in os.walk(reads_dir):
     for file in filenames:
-        if "nonrRNA" in file:
-            name = file.split("R")[0]
+        if "nonrRNA" in file and file.notendswith(".log"): #might not work
+            name = file.split("_R")[0]
             if name not in replicates:
                 replicates[name] = []
             replicates[name].append(file)
@@ -60,10 +60,12 @@ for key in replicates:
                     "-i",
                     salmon_index_dir,
                     "-l",
-                    "A",
-                    "-r",
-                    f"<(cat {reads_dir + replicates[key][0]} {reads_dir + replicates[key][1]})"
-                    # reads_dir + replicates[key][0] + " " + reads_dir + replicates[key][1],
+                    "ISF", # This might not be correct or consistent, check log files
+                    # f"<(cat {reads_dir + replicates[key][0]} {reads_dir + replicates[key][1]})"
+                    "-1",
+                    reads_dir + replicates[key][0],
+                    "-2",
+                    reads_dir + replicates[key][1],
                     "--validateMappings",
                     "-p",
                     "4",
@@ -72,7 +74,7 @@ for key in replicates:
                     "--reduceGCMemory",
                     "--writeUnmappedNames",
                     "-o",
-                    salmon_dir + "/" + key.strip("_")])
+                    salmon_dir.strip("/") + "/" + key.strip("_nonrRNA")])
     
 # Rename the output files to include the sample name
 
