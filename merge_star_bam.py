@@ -32,5 +32,5 @@ subprocess.run(["samtools",
                 "-o",
                 "trinity/merged_sorted.bam",
                 "trinity/merged.bam",
-                "@",
+                "-@",
                 "4"])
