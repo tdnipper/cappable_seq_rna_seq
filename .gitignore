@@ -20,3 +20,4 @@ env.sh
 logs
 ribodepleted_reads.archive
 star_alignment/*
+trinity/*

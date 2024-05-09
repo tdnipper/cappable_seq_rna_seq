@@ -1,8 +1,11 @@
+#! /usr/bin/env python3
 __name__ = "filename_utils"
 __author__ = "Thomas"
 __date__ = "2024-05-08" 
 
 import os
+
+# Assumes prefixes are the same for read files with _R1 and _R2 denoting fwd and rev reads
 
 def get_filenames(directory):
     replicates = {}

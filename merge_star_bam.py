@@ -18,6 +18,7 @@ for dirpath, dirnames, filenames in os.walk("star_alignment"):
         if "_aligned.bam" in filename:
             bam_files.append(os.path.join(dirpath, filename))
 
+# Merge bam files
 subprocess.run(["samtools",
                 "merge",
                 "-o",
@@ -25,6 +26,7 @@ subprocess.run(["samtools",
                 *bam_files
                 ])
 
+# Sort bam file by coordinate
 subprocess.run(["samtools",
                 "sort",
                 "-o",
