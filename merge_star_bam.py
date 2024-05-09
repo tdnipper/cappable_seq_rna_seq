@@ -8,6 +8,10 @@ if not os.path.exists("trinity"):
     os.makedirs("trinity")
     os.chown("trinity", PUID, PGID)
 
+if not os.path.exists("star_alignment"):
+    raise FileNotFoundError("Star alignment directory not at './star_alignment'")
+
+# Get a list of bam files from star_alignment
 bam_files = []
 for dirpath, dirnames, filenames in os.walk("star_alignment"):
     for filename in filenames:
