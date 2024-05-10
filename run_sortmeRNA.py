@@ -6,8 +6,8 @@ from filename_utils import get_filenames
 basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
-trimmed_reads_dir = f"{basedir}/decon_reads" #Changed for myco removal
-ribofile = f"{basedir}/human_rRNAs.fasta"
+trimmed_reads_dir = f"{basedir}/trimmed_reads" #Changed for myco removal
+ribofile = f"{basedir}/decon_reads.fasta"
 sort_dir = f"{basedir}/ribodepleted_reads"
 
 if not os.path.exists(trimmed_reads_dir):
@@ -23,7 +23,6 @@ if not os.path.exists(sort_dir):
 replicates = get_filenames(trimmed_reads_dir)
 
 for key in replicates:
-    # key = key.strip("_")
     subprocess.run(["sortmerna",
                     "-ref",
                     ribofile,

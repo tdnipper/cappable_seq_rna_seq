@@ -28,16 +28,6 @@ if not os.path.exists(star_index_dir):
 
 reads = get_filenames(reads_dir)
 
-# for dirpath, dirnames, filenames in os.walk(reads_dir):
-#     for filename in filenames:
-#         if not filename.endswith(".log") and ("nonrRNA") in filename:
-#             name = filename.split("_R")[0]
-#             if name not in reads:
-#                 reads[name] = []
-#             reads[name].append(filename)
-
-
-
 for key in reads:
     if len(reads[key]) != 2:
         raise ValueError(f"Error: {key} does not have exactly 2 read files")
