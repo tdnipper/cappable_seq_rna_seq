@@ -6,15 +6,15 @@ from filename_utils import get_filenames
 basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
-trimmed_reads_dir = f"{basedir}/decon_reads" #Changed for myco removal
-ribofile = f"{basedir}/human_rRNAs.fasta"
-sort_dir = f"{basedir}/ribodepleted_reads"
+trimmed_reads_dir = f"{basedir}/trimmed_reads"
+ribofile = f"{basedir}/decon_reads.fasta" # Cat myco_genome and human_rRNAs
+sort_dir = f"{basedir}/decon_reads"
 
 if not os.path.exists(trimmed_reads_dir):
     raise FileNotFoundError(f"Error: trimmed_reads directory does not exist at {trimmed_reads_dir}")
 
 if not os.path.exists(ribofile):
-    raise FileNotFoundError(f"Error: human_rRNAs.fasta does not exist at {ribofile}")
+    raise FileNotFoundError(f"Error: myco_genome.fasta does not exist at {ribofile}")
 
 if not os.path.exists(sort_dir):
     os.mkdir(sort_dir)
@@ -23,7 +23,6 @@ if not os.path.exists(sort_dir):
 replicates = get_filenames(trimmed_reads_dir)
 
 for key in replicates:
-    # key = key.strip("_")
     subprocess.run(["sortmerna",
                     "-ref",
                     ribofile,
@@ -32,11 +31,11 @@ for key in replicates:
                     "-reads",
                     f"{trimmed_reads_dir}/{replicates[key][1]}",
                     "-aligned",
-                    f"{sort_dir}/{key}rRNA", # label for RNA files
+                    f"{sort_dir}/{key}_myco", # label for contaminated files
                     "-other",
-                    f"{sort_dir}/{key}nonrRNA", # label for nonrRNA files
-                    "--paired_in", # if either read aligns to rRNA, discard in aligned file
-                    "--out2", # write non-rRNA neads to 2 files
+                    f"{sort_dir}/{key}_decon", # label for decon'd files
+                    "--paired_in", # if either read aligns to rRNA or myco, discard in aligned file
+                    "--out2", # write output neads to 2 files
                     "-fastx",
                     "--threads",
                     "4",

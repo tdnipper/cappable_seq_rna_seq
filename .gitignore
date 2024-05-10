@@ -21,3 +21,6 @@ logs
 ribodepleted_reads.archive
 star_alignment/*
 trinity/*
+*.old
+__pycache__
+decon_reads

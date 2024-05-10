@@ -27,13 +27,6 @@ if not os.path.exists(f"{basedir}/fastqc/trimmed_reads"):
 
 replicates = get_filenames(raw_dir)
 
-# for dirpath, dirnames, filenames in os.walk(raw_dir):
-#     for file in filenames:
-#         name = file.split("_R")[0]
-#         if name not in replicates:
-#             replicates[name] = []
-#         replicates[name].append(file)
-
 for key in replicates:
     subprocess.run(["cutadapt",
                     f"{raw_dir}/{replicates[key][0]}",
