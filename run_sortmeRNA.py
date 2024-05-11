@@ -31,9 +31,9 @@ for key in replicates:
                     "-reads",
                     f"{trimmed_reads_dir}/{replicates[key][1]}",
                     "-aligned",
-                    f"{sort_dir}/{key}rRNA", # label for RNA files
+                    f"{sort_dir}/{key}_rRNA", # label for RNA files
                     "-other",
-                    f"{sort_dir}/{key}nonrRNA", # label for nonrRNA files
+                    f"{sort_dir}/{key}_nonrRNA", # label for nonrRNA files
                     "--paired_in", # if either read aligns to rRNA, discard in aligned file
                     "--out2", # write non-rRNA neads to 2 files
                     "-fastx",
