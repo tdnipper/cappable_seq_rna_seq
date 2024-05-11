@@ -47,13 +47,6 @@ if not os.path.exists(salmon_index_dir):
 # combining the replicates for each sample
 
 replicates = get_filenames(reads_dir)
-# for dirpath, dirnames, filenames in os.walk(reads_dir):
-#     for file in filenames:
-#         if "nonrRNA" in file and file.notendswith(".log"): #might not work
-#             name = file.split("_R")[0]
-#             if name not in replicates:
-#                 replicates[name] = []
-#             replicates[name].append(file)
 
 for key in replicates:
     subprocess.run(["salmon",
