@@ -72,7 +72,13 @@ for key in reads:
                     f"{star_dir}/{keyname}/{keyname}_aligned.bam",
                     "-o",
                     f"{star_dir}/{keyname}/{keyname}_coord_sorted.bam",
-                    "-@",
+                    "-@",# for dirpath, dirnames, filenames in os.walk(reads_dir):
+#     for file in filenames:
+#         if "nonrRNA" in file and file.notendswith(".log"): #might not work
+#             name = file.split("_R")[0]
+#             if name not in replicates:
+#                 replicates[name] = []
+#             replicates[name].append(file)
                     "4"])
     subprocess.run(["samtools",
                     "index",

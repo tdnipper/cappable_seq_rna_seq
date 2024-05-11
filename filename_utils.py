@@ -12,9 +12,10 @@ def get_filenames(directory):
 
     for dirpath, dirnames, filenames in os.walk(directory):
         for file in filenames:
-            name = file.split("_R")[0]
-            if name not in replicates:
-                replicates[name] = []
-            replicates[name].append(file)
+            if file.endswith(".fastq") or file.endswith(".fq") or file.endswith(".fastq.gz") or file.endswith(".fq.gz"):
+                name = file.split("_R")[0]
+                if name not in replicates:
+                    replicates[name] = []
+                replicates[name].append(file)
 
     return replicates
