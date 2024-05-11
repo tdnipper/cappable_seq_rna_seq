@@ -17,7 +17,7 @@ __date__ = "2024-05-07"
 basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
-salmon_dir = f"{basedir}/salmon_quantification/"
+salmon_dir = f"{basedir}/salmon_quantification"
 reads_dir = f"{basedir}/ribodepleted_reads/"
 salmon_index_dir = f"{basedir}/genome/salmon_index/"
 
@@ -49,27 +49,28 @@ if not os.path.exists(salmon_index_dir):
 replicates = get_filenames(reads_dir)
 
 for key in replicates:
-    subprocess.run(["salmon",
-                    "quant",
-                    "-i",
-                    salmon_index_dir,
-                    "-l",
-                    "ISF", # This might not be correct or consistent, check log files
-                    # f"<(cat {reads_dir + replicates[key][0]} {reads_dir + replicates[key][1]})"
-                    "-1",
-                    reads_dir + replicates[key][0],
-                    "-2",
-                    reads_dir + replicates[key][1],
-                    "--validateMappings",
-                    "-p",
-                    "4",
-                    "--seqBias",
-                    "--gcBias",
-                    "--reduceGCMemory",
-                    "--writeUnmappedNames",
-                    "-o",
-                    salmon_dir.strip("/") + "/" + key.strip("_nonrRNA")])
-    
+    if "_nonrRNA" in key:
+        subprocess.run(["salmon",
+                        "quant",
+                        "-i",
+                        salmon_index_dir,
+                        "-l",
+                        "ISF", # This might not be correct or consistent, check log files
+                        # f"<(cat {reads_dir + replicates[key][0]} {reads_dir + replicates[key][1]})"
+                        "-1",
+                        reads_dir + replicates[key][0],
+                        "-2",
+                        reads_dir + replicates[key][1],
+                        "--validateMappings",
+                        "-p",
+                        "4",
+                        "--seqBias",
+                        "--gcBias",
+                        "--reduceGCMemory",
+                        "--writeUnmappedNames",
+                        "-o",
+                        salmon_dir + "/" + key.strip("_nonrRNA")])
+        
 # Rename the output files to include the sample name
 
 for dirpath, dirnames, filenames in os.walk(salmon_dir):
