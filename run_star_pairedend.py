@@ -34,62 +34,57 @@ for key in reads:
 
 # Run star alignment on each sample in paired-end mode
 for key in reads:
-    keyname = key.replace("_nonrRNA", "")
-    subprocess.run(["STAR",
-                    "--runThreadN",
-                    "4",
-                    "--genomeDir",
-                    star_index_dir,
-                    "--readFilesIn",
-                    f"{reads_dir}/{reads[key][0]}",
-                    f"{reads_dir}/{reads[key][1]}",
-                    "--outFileNamePrefix",
-                    f"{star_dir}/{keyname}/{keyname}_",
-                    "--quantMode",
-                    "TranscriptomeSAM",
-                    "--genomeLoad",
-                    "LoadAndKeep",
-                    "--outReadsUnmapped",
-                    "Fastx",
-                    "--readFilesCommand",
-                    "zcat"])
-    # Sort and index bam files
-    subprocess.run(["samtools",
-                    "view",
-                    f"{star_dir}/{keyname}/{keyname}_Aligned.out.sam",
-                    "-o",
-                    f"{star_dir}/{keyname}/{keyname}_aligned.bam"])
-    os.remove(f"{star_dir}/{keyname}/{keyname}_Aligned.out.sam")
-    subprocess.run(["samtools",
-                    "sort",
-                    f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.out.bam",
-                    "-o",
-                    f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.sorted.bam",
-                    "-@",
-                    "4"])
-    subprocess.run(["samtools",
-                    "sort",
-                    f"{star_dir}/{keyname}/{keyname}_aligned.bam",
-                    "-o",
-                    f"{star_dir}/{keyname}/{keyname}_coord_sorted.bam",
-                    "-@",# for dirpath, dirnames, filenames in os.walk(reads_dir):
-#     for file in filenames:
-#         if "nonrRNA" in file and file.notendswith(".log"): #might not work
-#             name = file.split("_R")[0]
-#             if name not in replicates:
-#                 replicates[name] = []
-#             replicates[name].append(file)
-                    "4"])
-    subprocess.run(["samtools",
-                    "index",
-                    f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.sorted.bam",
-                    "-@",
-                    "4"])
-    subprocess.run(["samtools",
-                    "index",
-                    f"{star_dir}/{keyname}/{keyname}_coord_sorted.bam",
-                    "-@",
-                    "4"])
+    if "_nonrRNA" in key:
+        keyname = key.replace("_nonrRNA", "")
+        subprocess.run(["STAR",
+                        "--runThreadN",
+                        "4",
+                        "--genomeDir",
+                        star_index_dir,
+                        "--readFilesIn",
+                        f"{reads_dir}/{reads[key][0]}",
+                        f"{reads_dir}/{reads[key][1]}",
+                        "--outFileNamePrefix",
+                        f"{star_dir}/{keyname}/{keyname}_",
+                        "--quantMode",
+                        "TranscriptomeSAM",
+                        "--genomeLoad",
+                        "LoadAndKeep",
+                        "--outReadsUnmapped",
+                        "Fastx",
+                        "--readFilesCommand",
+                        "zcat"])
+        # Sort and index bam files
+        subprocess.run(["samtools",
+                        "view",
+                        f"{star_dir}/{keyname}/{keyname}_Aligned.out.sam",
+                        "-o",
+                        f"{star_dir}/{keyname}/{keyname}_aligned.bam"])
+        os.remove(f"{star_dir}/{keyname}/{keyname}_Aligned.out.sam")
+        subprocess.run(["samtools",
+                        "sort",
+                        f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.out.bam",
+                        "-o",
+                        f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.sorted.bam",
+                        "-@",
+                        "4"])
+        subprocess.run(["samtools",
+                        "sort",
+                        f"{star_dir}/{keyname}/{keyname}_aligned.bam",
+                        "-o",
+                        f"{star_dir}/{keyname}/{keyname}_coord_sorted.bam",
+                        "-@",# for dirpath, dirnames, filenames in os.walk(reads_dir):
+                        "4"])
+        subprocess.run(["samtools",
+                        "index",
+                        f"{star_dir}/{keyname}/{keyname}_Aligned.toTranscriptome.sorted.bam",
+                        "-@",
+                        "4"])
+        subprocess.run(["samtools",
+                        "index",
+                        f"{star_dir}/{keyname}/{keyname}_coord_sorted.bam",
+                        "-@",
+                        "4"])
 
 # Clean up
 if os.path.exists(f"{star_dir}/exit"):
