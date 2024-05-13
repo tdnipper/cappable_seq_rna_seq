@@ -26,3 +26,4 @@ __pycache__
 decon_reads
 decon_reads.fasta
 myco_genome.fasta
+salmon_quantification_trinity
