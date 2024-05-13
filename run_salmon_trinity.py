@@ -106,7 +106,7 @@ for key in files:
                 "-i",
                 salmon_index_dir,
                 "-l",
-                "ISF",
+                "A", #Autodetect lib type
                 "-1",
                 f"{reads_dir}/{files[key][0]}",
                 "-2",
@@ -114,7 +114,7 @@ for key in files:
                 "-p",
                 "4",
                 "-o",
-                f"{salmon_dir}/{key}",
+                f"{salmon_dir}/{key}.strip('_nonrRNA')/",
             ]
         )
         if result.returncode != 0:
