@@ -18,8 +18,8 @@ basedir=os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
 salmon_dir = f"{basedir}/salmon_quantification"
-reads_dir = f"{basedir}/ribodepleted_reads/"
-salmon_index_dir = f"{basedir}/genome/salmon_index/"
+reads_dir = f"{basedir}/ribodepleted_reads"
+salmon_index_dir = f"{basedir}/genome/salmon_index"
 
 if not os.path.exists(salmon_dir):
     os.mkdir(salmon_dir)
