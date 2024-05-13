@@ -58,9 +58,9 @@ for key in replicates:
                         "ISF", # This might not be correct or consistent, check log files
                         # f"<(cat {reads_dir + replicates[key][0]} {reads_dir + replicates[key][1]})"
                         "-1",
-                        reads_dir + replicates[key][0],
+                        reads_dir + "/" + replicates[key][0],
                         "-2",
-                        reads_dir + replicates[key][1],
+                        reads_dir + "/" + replicates[key][1],
                         "--validateMappings",
                         "-p",
                         "4",
