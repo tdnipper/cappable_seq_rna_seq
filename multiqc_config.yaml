@@ -27,25 +27,25 @@ module_order:
       anchor: "salmon_no_cleanup"
       info: "Salmon quantification without myco cleanup"
       path_filters:
-        - "salmon_quantification.old/*/"
+        - "salmon_quantification.old/*/*"
   - salmon:
       name: "Salmon after cleanup"
       anchor: "salmon_after_cleanup"
       info: "Salmon quantification after myco cleanup"
       path_filters:
-        - "samlon_quantification/*/"
+        - "salmon_quantification/*/*"
   - salmon:
       name: "Salmon mapped to trinity"
       anchor: "salmon_mapped_to_trinity"
       info: "Salmon quantification using trinity index"
       path_filters:
-        - "salmon_quantification_trinity/*/"
+        - "salmon_quantification_trinity/*/*"
   - salmon:
       name: "Salmon quantification of star alignment"
       anchor: "salmon_star"
       info: "Salmon quantification using star alignment"
       path_filters:
-        - "salmon_star/*/"
+        - "salmon_star/*/*"
   - bowtie2:
       name: "Bowtie2 QC trinity assembly"
       anchor: "bowtie2_trinity"
