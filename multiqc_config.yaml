@@ -6,11 +6,14 @@ subtitle: "Analysis of cappable-seq recovered RNA"
 module_order:
   - fastqc
   - cutadapt
-  - sortmerna
+  - sortmerna:
+      name: "SortMeRNA"
+      anchor: "sortmerna"
+      info: "SortMeRNA removing human rRNA and mycoplasma total genomic sequences"
   - star:
       name: "STAR"
       anchor: "star"
-      info: "This section of the report shows STAR alignment results/"
+      info: "This section of the report shows STAR alignment results before salmon quantification"
       path_filters:
         - "star_alignment/*"
   # - samtools:
@@ -37,6 +40,12 @@ module_order:
       info: "Salmon quantification using trinity index"
       path_filters:
         - "salmon_quantification_trinity/*/"
+  - salmon:
+      name: "Salmon quantification of star alignment"
+      anchor: "salmon_star"
+      info: "Salmon quantification using star alignment"
+      path_filters:
+        - "salmon_star/*/"
   - bowtie2:
       name: "Bowtie2 QC trinity assembly"
       anchor: "bowtie2_trinity"
