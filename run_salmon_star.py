@@ -24,6 +24,7 @@ files = get_filenames(star_dir)
 
 for key in files:
     if "_nonrRNA" in key:
+        name=key.strip("_nonrRNA")
         result = subprocess.run(
             [
                 "salmon",
@@ -31,7 +32,7 @@ for key in files:
                 "-i",
                 salmon_index,
                 "-l",
-                "ISD",
+                "ISD", #Maybe change this?
                 "-1",
                 f"{star_dir}/{files[key][0]}",
                 "-2",
@@ -39,6 +40,6 @@ for key in files:
                 "-p",
                 "8",
                 "-o",
-                f"{salmon_dir}/{key}",
+                f"{salmon_dir}/{name}",
             ]
         )

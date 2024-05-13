@@ -99,6 +99,7 @@ files = get_filenames(reads_dir)
 # Run salmon quantification aligning to Trinity assembled transcripts
 for key in files:
     if "_nonrRNA" in key:
+        name = key.strip("_nonrRNA")
         result = subprocess.run(
             [
                 "salmon",
@@ -114,7 +115,7 @@ for key in files:
                 "-p",
                 "4",
                 "-o",
-                f"{salmon_dir}/{key}.strip('_nonrRNA')/",
+                f"{salmon_dir}/{name}/",
             ]
         )
         if result.returncode != 0:
