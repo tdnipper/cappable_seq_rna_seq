@@ -27,3 +27,5 @@ decon_reads
 decon_reads.fasta
 myco_genome.fasta
 salmon_quantification_trinity
+multiqc_test
+salmon_quantification_trinity.isf
