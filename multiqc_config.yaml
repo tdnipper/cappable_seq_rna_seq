@@ -1,5 +1,5 @@
-title: "DUSP11 CLIP-seq"
-subtitle: "MultiQC before peak calling"
+title: "Cappable-seq pilot"
+subtitle: "Analysis of cappable-seq recovered RNA"
 
 # Set the order of modules
 
@@ -12,11 +12,34 @@ module_order:
       anchor: "star"
       info: "This section of the report shows STAR alignment results/"
       path_filters:
-        - "ribodepleted_star_alignments/*/*_Log.out"
-  - samtools:
-      name: "Samtools-stats"
-      anchor: "samtools_stats"
-      info: "This section of the report shows Samtools stats results for the star alignment."
+        - "star_alignment/*"
+  # - samtools:
+  #     name: "Samtools-stats"
+  #     anchor: "samtools_stats"
+  #     info: "This section of the report shows Samtools stats results for the star alignment."
+  #     path_filters:
+  #       # - "qc_reports/samtools-stats/*_ribodepleted_star.stats"
+  - salmon:
+      name: "Salmon no cleanup"
+      anchor: "salmon_no_cleanup"
+      info: "Salmon quantification without myco cleanup"
       path_filters:
-        # - "qc_reports/samtools-stats/*_ribodepleted_star.stats"
-  - salmon
+        - "salmon_quantification.old/*/"
+  - salmon:
+      name: "Salmon after cleanup"
+      anchor: "salmon_after_cleanup"
+      info: "Salmon quantification after myco cleanup"
+      path_filters:
+        - "samlon_quantification/*/"
+  - salmon:
+      name: "Salmon mapped to trinity"
+      anchor: "salmon_mapped_to_trinity"
+      info: "Salmon quantification using trinity index"
+      path_filters:
+        - "salmon_quantification_trinity/*/"
+  - bowtie2:
+      name: "Bowtie2 QC trinity assembly"
+      anchor: "bowtie2_trinity"
+      info: "Bowtie2 QC of trinity assembly"
+      path_filters:
+        - "bowtie2_trinity/*"
