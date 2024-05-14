@@ -13,6 +13,7 @@ trinity = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multi
 star = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_star_star.txt",
                             sep="\t")
 
+
 def graph(data, title):
     sns.set_theme(style="whitegrid")
     plt.figure(figsize=(10, 6))
