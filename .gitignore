@@ -29,3 +29,6 @@ myco_genome.fasta
 salmon_quantification_trinity
 multiqc_test
 salmon_quantification_trinity.isf
+salmon_quantification_trinity.isd
+!genome/WSN_annotated_sorted.gff
+salmon_quantification.A
