@@ -1,0 +1,62 @@
+##gff-version 3
+##sequence-region   FLUC 1 1656
+##sequence-region   WSN_HA 1 1775
+##sequence-region   WSN_M 1 1027
+##sequence-region   WSN_NA 1 1409
+##sequence-region   WSN_NP 1 1565
+##sequence-region   WSN_NS 1 890
+##sequence-region   WSN_PA 1 2233
+##sequence-region   WSN_PB1 1 2341
+##sequence-region   WSN_PB2 1 2341
+FLUC	.	gene	1	1656	.	+	.	ID=gene1;Name=FLUC;product=firefly luciferase
+FLUC	.	transcript	1	1656	.	+	.	ID=transcript1;Parent=gene1;gene=FLUC;product=firefly luciferase
+FLUC	.	CDS	1	1656	.	+	0	Parent=transcript1;gene=FLUC;product=firefly luciferase
+###
+WSN_HA	.	gene	1	1775	.	-	.	ID=gene2;Name=HA;gene=WSN_HA;product=WSN hemagglutinin
+WSN_HA	.	transcript	1	1775	.	+	.	ID=transcript2;Parent=gene2;gene=WSN_HA;product=WSN hemagglutinin
+WSN_HA	.	CDS	33	1730	.	+	0	Parent=transcript2;gene=WSN_HA;product=WSN hemagglutinin
+WSN_HA	.	exon	1	1775	.	+	.	Parent=gene2;gene=WSN_HA;product=WSN hemagglutinin;transcript_id=HA_transcript;gene_id=WSN_HA
+###
+WSN_M	.	gene	1	1027	.	-	.	ID=gene3;gene=WSN_M;Name=M
+WSN_M	.	transcript	1	1027	.	+	.	ID=transcript3;Parent=gene3;gene=WSN_M
+WSN_M	.	exon	1	51	.	+	.	Parent=transcript3;gene=WSN_M;product=WSN M2 protein;transcript_id=M_transcript;gene_id=WSN_M
+WSN_M	.	exon	1	1027	.	+	.	Parent=transcript3;gene=WSN_M;product=WSN matrix protein;transcript_id=M_transcript;gene_id=WSN_M
+WSN_M	.	CDS	29	51	.	+	0	Parent=transcript3;gene=WSN_M;product=WSN M2 protein
+WSN_M	.	CDS	29	784	.	+	1	Parent=transcript3;gene=WSN_M;product=WSN matrix protein
+WSN_M	.	CDS	740	1007	.	+	1	Parent=transcript3;gene=WSN_M;product=WSN M2 protein
+WSN_M	.	exon	740	1027	.	+	.	Parent=transcript3;gene=WSN_M;product=WSN M2 protein;transcript_id=M_transcript;gene_id=WSN_M
+###
+WSN_NA	.	gene	1	1409	.	-	.	ID=gene4;Name=NA;gene=WSN_NA;product=WSN neuraminidase
+WSN_NA	.	transcript	1	1409	.	+	.	ID=transcript4;Parent=gene4;gene=WSN_NA;product=WSN neuraminidase
+WSN_NA	.	CDS	20	1381	.	+	0	Parent=transcript4;gene=WSN_NA;product=WSN neuraminidase
+WSN_NA	.	exon	1	1409	.	+	.	Parent=gene4;gene=WSN_NA;product=WSN neuraminidase;transcript_id=NA_transcript;gene_id=WSN_NA
+###
+WSN_NP	.	gene	1	1565	.	-	.	ID=gene5;Name=NP;gene=WSN_NP;product=WSN nucleoprotein
+WSN_NP	.	transcript	1	1565	.	+	.	ID=transcript5;Parent=gene5;gene=WSN_NP;product=WSN nucleoprotein
+WSN_NP	.	exon	1	1565	.	+	.	Parent=transcript5;gene=WSN_NP;product=WSN nucleoprotein;transcript_id=NP_transcript;gene_id=WSN_NP
+WSN_NP	.	CDS	46	1542	.	+	0	Parent=transcript5;gene=WSN_NP;product=WSN nucleoprotein
+###
+WSN_NS	.	gene	1	890	.	-	.	ID=gene6;Name=NS;gene=WSN_NS
+WSN_NS	.	transcript	1	890	.	+	.	ID=transcript6;Parent=gene6;gene=WSN_NS
+WSN_NS	.	exon	1	56	.	+	.	Parent=transcript6;gene=WSN_NS;transcript_id=NS_transcript;gene_id=WSN_NS;product=WSN nonstructural protein 2
+WSN_NS	.	exon	1	890	.	+	.	Parent=transcript6;gene=WSN_NS;transcript_id=NS_transcript;gene_id=WSN_NS;product=WSN nonstructural protein 1
+WSN_NS	.	CDS	27	56	.	+	0	Parent=transcript6;product=WSN nonstructural protein 2;gene_id=WSN_NS
+WSN_NS	.	CDS	27	719	.	+	0	Parent=transcript6;product=WSN nonstructural protein 1;gene_id=WSN_NS
+WSN_NS	.	CDS	529	864	.	+	0	Parent=transcript6;product=WSN nonstructural protein 2;gene_id=WSN_NS
+WSN_NS	.	exon	529	890	.	+	.	Parent=transcript6;gene=WSN_NS;transcript_id=NS_transcript;gene_id=WSN_NS;product=WSN nonstructural protein 2
+###
+WSN_PA	.	gene	1	2233	.	-	.	ID=gene7;Name=PA;gene=WSN_PA;product=WSN polymerase acidic subunit
+WSN_PA	.	transcript	1	2233	.	+	.	ID=transcript7;Parent=gene7;gene=WSN_PA;product=WSN polymerase acidic subunit
+WSN_PA	.	exon	1	2233	.	+	.	Parent=transcript7;gene=WSN_PA;product=WSN polymerase acidic subunit;transcript_id=PA_transcript;gene_id=WSN_PA
+WSN_PA	.	CDS	25	2175	.	+	0	Parent=transcript7;gene=WSN_PA;product=WSN polymerase acidic subunit
+###
+WSN_PB1	.	gene	1	2341	.	-	.	ID=gene8;Name=PB1;gene=WSN_PB1;product=WSN polymerase basic 1 subunit
+WSN_PB1	.	transcript	1	2341	.	+	.	ID=transcript8;Parent=gene8;gene=WSN_PB1;product=WSN polymerase basic 1 subunit
+WSN_PB1	.	exon	1	2341	.	+	.	Parent=transcript8;gene=WSN_PB1;product=WSN polymerase basic 1 subunit;transcript_id=PB1_transcript;gene_id=WSN_PB1
+WSN_PB1	.	CDS	25	2298	.	+	0	Parent=transcript8;gene=WSN_PB1;product=WSN polymerase basic 1 subunit
+###
+WSN_PB2	.	gene	1	2341	.	-	.	ID=gene9;Name=PB2;gene=WSN_PB2;product=WSN polymerase basic 2 subunit
+WSN_PB2	.	transcript	1	2341	.	+	.	ID=transcript9;Parent=gene9;gene=WSN_PB2;product=WSN polymerase basic 2 subunit
+WSN_PB2	.	exon	1	2341	.	+	.	Parent=transcript9;gene=WSN_PB2;product=WSN polymerase basic 2 subunit;transcript_id=PB2_transcript;gene_id=WSN_PB2
+WSN_PB2	.	CDS	28	2307	.	+	0	Parent=transcript9;gene=WSN_PB2;product=WSN polymerase basic 2 subunit
+###
