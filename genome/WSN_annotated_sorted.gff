@@ -10,11 +10,11 @@
 ##sequence-region   WSN_PB2 1 2341
 FLUC	.	gene	1	1656	.	+	.	ID=gene1;Name=FLUC;product=firefly luciferase
 FLUC	.	transcript	1	1656	.	+	.	ID=transcript1;Parent=gene1;gene=FLUC;product=firefly luciferase
-FLUC	.	CDS	1	1656	.	+	0	Parent=transcript1;gene=FLUC;product=firefly luciferase
+FLUC	.	CDS	1	1656	.	+	0	Parent=transcript1;gene=FLUC;product=firefly luciferase;transcript_id=FLUC_transcript;gene_id=FLUC
 ###
 WSN_HA	.	gene	1	1775	.	-	.	ID=gene2;Name=HA;gene=WSN_HA;product=WSN hemagglutinin
 WSN_HA	.	transcript	1	1775	.	+	.	ID=transcript2;Parent=gene2;gene=WSN_HA;product=WSN hemagglutinin
-WSN_HA	.	CDS	33	1730	.	+	0	Parent=transcript2;gene=WSN_HA;product=WSN hemagglutinin
+WSN_HA	.	CDS	33	1730	.	+	0	Parent=transcript2;gene=WSN_HA;product=WSN hemagglutinin;transcript_id=HA_transcript;gene_id=WSN_HA
 WSN_HA	.	exon	1	1775	.	+	.	Parent=gene2;gene=WSN_HA;product=WSN hemagglutinin;transcript_id=HA_transcript;gene_id=WSN_HA
 ###
 WSN_M	.	gene	1	1027	.	-	.	ID=gene3;gene=WSN_M;Name=M
@@ -28,7 +28,7 @@ WSN_M	.	exon	740	1027	.	+	.	Parent=transcript3;gene=WSN_M;product=WSN M2 protein
 ###
 WSN_NA	.	gene	1	1409	.	-	.	ID=gene4;Name=NA;gene=WSN_NA;product=WSN neuraminidase
 WSN_NA	.	transcript	1	1409	.	+	.	ID=transcript4;Parent=gene4;gene=WSN_NA;product=WSN neuraminidase
-WSN_NA	.	CDS	20	1381	.	+	0	Parent=transcript4;gene=WSN_NA;product=WSN neuraminidase
+WSN_NA	.	CDS	20	1381	.	+	0	Parent=transcript4;gene=WSN_NA;product=WSN neuraminidase;transcript_id=NA_transcript;gene_id=WSN_NA
 WSN_NA	.	exon	1	1409	.	+	.	Parent=gene4;gene=WSN_NA;product=WSN neuraminidase;transcript_id=NA_transcript;gene_id=WSN_NA
 ###
 WSN_NP	.	gene	1	1565	.	-	.	ID=gene5;Name=NP;gene=WSN_NP;product=WSN nucleoprotein
