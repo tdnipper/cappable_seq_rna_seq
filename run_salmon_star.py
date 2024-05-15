@@ -10,7 +10,7 @@ from filename_utils import get_filenames
 
 star_dir = "star_alignment"
 salmon_dir = "salmon_quantification_star"
-salmon_index = "trinity/salmon_index" # Trinity generated index instead of hg38
+salmon_index = "trinity/salmon_index"  # Trinity generated index instead of hg38
 PUID = os.getuid()
 PGID = os.getgid()
 
@@ -29,6 +29,6 @@ for dirpath, dirnames, filenames in os.walk(star_dir):
         if filename.endswith("Aligned.toTranscriptome.sorted.bam"):
             name = filename.strip("_Aligned.toTranscriptome.sorted.bam")
             result = subprocess.run(
-                f"salmon quant -i {salmon_index} -l ISD -a {star_dir}.{filename} -p 4 -o {salmon_dir}/{name}",
-                shell=True
+                f"salmon quant -i {salmon_index} -l ISF -a {star_dir}.{filename} -p 4 -o {salmon_dir}/{name}",
+                shell=True,
             )
