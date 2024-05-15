@@ -6,8 +6,9 @@ import subprocess
 from filename_utils import get_filenames
 
 # Use this script to run salmon on star alignments to transcriptome
+# Assumes star index has already been created
 
-star_dir = "star_alignments"
+star_dir = "star_alignment"
 salmon_dir = "salmon_quantification_star"
 salmon_index = "trinity/salmon_index" # Trinity generated index instead of hg38
 PUID = os.getuid()
@@ -20,26 +21,14 @@ if not os.path.exists(salmon_dir):
 if not os.path.exists(star_dir):
     raise FileNotFoundError("Error: star alignments directory not found")
 
-files = get_filenames(star_dir)
+if not os.path.exists(salmon_index):
+    raise FileNotFoundError("Error: salmon index directory not found")
 
-for key in files:
-    if "_nonrRNA" in key:
-        name=key.strip("_nonrRNA")
-        result = subprocess.run(
-            [
-                "salmon",
-                "quant",
-                "-i",
-                salmon_index,
-                "-l",
-                "ISD", #Maybe change this?
-                "-1",
-                f"{star_dir}/{files[key][0]}",
-                "-2",
-                f"{star_dir}/{files[key][1]}",
-                "-p",
-                "8",
-                "-o",
-                f"{salmon_dir}/{name}",
-            ]
-        )
+for dirpath, dirnames, filenames in os.walk(star_dir):
+    for filename in filenames:
+        if filename.endswith("Aligned.toTranscriptome.sorted.bam"):
+            name = filename.strip("_Aligned.toTranscriptome.sorted.bam")
+            result = subprocess.run(
+                f"salmon quant -i {salmon_index} -l ISD -a {star_dir}.{filename} -p 4 -o {salmon_dir}/{name}",
+                shell=True
+            )
