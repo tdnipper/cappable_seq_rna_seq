@@ -29,9 +29,45 @@ if not os.path.exists(reads_dir):
     sys.exit("Error: ribodepleted_reads directory does not exist")
 
 if not os.path.exists(salmon_index_dir):
-    print("Error: Salmon index directory does not exist")
+    print("Salmon index directory does not exist")
     print("attempting salmon index")
-    subprocess.run(["salmon", 
+    if not os.path.exists(f"{basedir}/genome/hybrid_gentrome.fasta"):
+        print("creating hybrid_gentrome.fasta")
+        # Make hybrid genome file
+        if not os.path.exists(f"{basedir}/genome/hybrid_genome.fasta"):
+            result = subprocess.run(["cat",
+                                    f"{basedir}/genome/GRCh38.p14.genome.fa",
+                                    f"{basedir}/genome/WSN_Mehle.fasta",
+                                    ">",
+                                    f"{basedir}/genome/hybrid_genome.fasta"])
+            if result.returncode != 0:
+                sys.exit("Error: creating hybrid_genome.fasta failed")
+        # Make decoy file
+        if not os.path.exists(f"{basedir}/genome/decoys.txt"):
+            result = subprocess.run(["cat",
+                                    f"{basedir}/genome/GRCh38.p14.genome.fa",
+                                    f"{basedir}/genome/WSN_Mehle.fasta",
+                                    ">",
+                                    f"{basedir}/genome/decoys.txt"])
+            if result.returncode != 0:
+                sys.exit("Error: creating decoys.txt failed")
+        # Make hybrid transcript file
+        if not os.path.exists(f"{basedir}/genome/hybrid_transcripts.fasta"):
+            result = subprocess.run(["cat",
+                                    f"{basedir}/genome/gencode.v46.transcripts.fa",
+                                    f"{basedir}/genome/WSN_transcripts.fasta",
+                                    ">",
+                                    f"{basedir}/genome/hybrid_transcripts.fasta"])
+            if result.returncode != 0:
+                sys.exit("Error: creating hybrid_transcripts.fasta failed")
+        # Make hybrid_gentrome file
+        result = subprocess.run(["cat",
+                                 f"{basedir}/genome/hybrid_genome.fasta",
+                                 f"{basedir}/genome/hybrid_transcripts.fasta",
+                                 ">",
+                                 f"{basedir}/genome/hybrid_gentrome.fasta"])
+    # Run salmon index
+    result = subprocess.run(["salmon", 
                     "index", 
                     "-t",
                     "genome/hybrid_gentrome.fasta",
@@ -41,6 +77,8 @@ if not os.path.exists(salmon_index_dir):
                     "4", 
                     "-i", 
                     salmon_index_dir])
+    if result.returncode != 0:
+        sys.exit("Error: Salmon index failed")
 
 
 # Find replicate files in reads_dir and run salmon quantification on them, 
@@ -50,6 +88,7 @@ replicates = get_filenames(reads_dir)
 
 for key in replicates:
     if "_nonrRNA" in key:
+        name = key.strip("_nonrRNA")
         subprocess.run(["salmon",
                         "quant",
                         "-i",
@@ -69,7 +108,7 @@ for key in replicates:
                         "--reduceGCMemory",
                         "--writeUnmappedNames",
                         "-o",
-                        salmon_dir + "/" + key.strip("_nonrRNA")])
+                        salmon_dir + "/" + name])
         
 # Rename the output files to include the sample name
 
