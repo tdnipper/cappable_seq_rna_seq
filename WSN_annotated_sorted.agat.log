@@ -1,4 +1,4 @@
-                            05/14/2024 at 21h05m48s                             
+                            05/14/2024 at 21h35m03s                             
 
 
  ------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ We filter the ontology to apply this rule.		We found 1861 terms that are sequenc
 => Number of feature type (3rd column): 4
 	* Level1: 1 => gene
 	* level2: 1 => transcript
-	* level3: 2 => exon CDS
+	* level3: 2 => CDS exon
 	* unknown: 0 => 
 => Version of the Bioperl GFF parser selected by AGAT: 3
                   ------ End parsing (done in 5 second) ------                  
@@ -80,17 +80,11 @@ None found
 
 ------------------------- Check7: all level3 locations -------------------------
 Features adjacents we merge them:
-WSN_NS	.	exon	1	56	.	+	.	ID "exon-7"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 2"  ; transcript_id NS_transcript
-WSN_NS	.	exon	1	890	.	+	.	ID "exon-8"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 1"  ; transcript_id NS_transcript
+WSN_M	.	CDS	29	51	.	+	0	ID "cds-3"  ; Parent transcript3 ; gene WSN_M ; product "WSN M2 protein" 
+WSN_M	.	CDS	29	784	.	+	1	ID "cds-4"  ; Parent transcript3 ; gene WSN_M ; product "WSN matrix protein" 
 Features adjacents we merge them:
-WSN_NS	.	exon	1	890	.	+	.	ID "exon-7"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 2"  ; transcript_id NS_transcript
-WSN_NS	.	exon	529	890	.	+	.	ID "exon-9"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 2"  ; transcript_id NS_transcript
-Features adjacents we merge them:
-WSN_M	.	exon	1	51	.	+	.	ID "exon-2"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN M2 protein"  ; transcript_id M_transcript
-WSN_M	.	exon	1	1027	.	+	.	ID "exon-3"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN matrix protein"  ; transcript_id M_transcript
-Features adjacents we merge them:
-WSN_M	.	exon	1	1027	.	+	.	ID "exon-2"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN M2 protein"  ; transcript_id M_transcript
-WSN_M	.	exon	740	1027	.	+	.	ID "exon-4"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN M2 protein"  ; transcript_id M_transcript
+WSN_M	.	CDS	29	784	.	+	0	ID "cds-3"  ; Parent transcript3 ; gene WSN_M ; product "WSN M2 protein" 
+WSN_M	.	CDS	740	1007	.	+	1	ID "cds-5"  ; Parent transcript3 ; gene WSN_M ; product "WSN M2 protein" 
 Features adjacents we merge them:
 WSN_NS	.	CDS	27	56	.	+	0	ID "cds-8"  ; Parent transcript6 ; gene_id WSN_NS ; product "WSN nonstructural protein 2" 
 WSN_NS	.	CDS	27	719	.	+	0	ID "cds-9"  ; Parent transcript6 ; gene_id WSN_NS ; product "WSN nonstructural protein 1" 
@@ -98,13 +92,17 @@ Features adjacents we merge them:
 WSN_NS	.	CDS	27	719	.	+	0	ID "cds-8"  ; Parent transcript6 ; gene_id WSN_NS ; product "WSN nonstructural protein 2" 
 WSN_NS	.	CDS	529	864	.	+	0	ID "cds-10"  ; Parent transcript6 ; gene_id WSN_NS ; product "WSN nonstructural protein 2" 
 Features adjacents we merge them:
-WSN_M	.	CDS	29	51	.	+	0	ID "cds-3"  ; Parent transcript3 ; gene WSN_M ; product "WSN M2 protein" 
-WSN_M	.	CDS	29	784	.	+	1	ID "cds-4"  ; Parent transcript3 ; gene WSN_M ; product "WSN matrix protein" 
+WSN_M	.	exon	1	51	.	+	.	ID "exon-2"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN M2 protein"  ; transcript_id M_transcript
+WSN_M	.	exon	1	1027	.	+	.	ID "exon-3"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN matrix protein"  ; transcript_id M_transcript
 Features adjacents we merge them:
-WSN_M	.	CDS	29	784	.	+	0	ID "cds-3"  ; Parent transcript3 ; gene WSN_M ; product "WSN M2 protein" 
-WSN_M	.	CDS	740	1007	.	+	1	ID "cds-5"  ; Parent transcript3 ; gene WSN_M ; product "WSN M2 protein" 
-2 adjacent exon merged
-2 adjacent cds merged
+WSN_M	.	exon	1	1027	.	+	.	ID "exon-2"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN M2 protein"  ; transcript_id M_transcript
+WSN_M	.	exon	740	1027	.	+	.	ID "exon-4"  ; Parent transcript3 ; gene WSN_M ; gene_id WSN_M ; product "WSN M2 protein"  ; transcript_id M_transcript
+Features adjacents we merge them:
+WSN_NS	.	exon	1	56	.	+	.	ID "exon-7"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 2"  ; transcript_id NS_transcript
+WSN_NS	.	exon	1	890	.	+	.	ID "exon-8"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 1"  ; transcript_id NS_transcript
+Features adjacents we merge them:
+WSN_NS	.	exon	1	890	.	+	.	ID "exon-7"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 2"  ; transcript_id NS_transcript
+WSN_NS	.	exon	529	890	.	+	.	ID "exon-9"  ; Parent transcript6 ; gene WSN_NS ; gene_id WSN_NS ; product "WSN nonstructural protein 2"  ; transcript_id NS_transcript
 ------------------------------ done in 0 seconds -------------------------------
 
 ------------------------------ Check8: check cds -------------------------------
@@ -113,11 +111,11 @@ No problem found
 
 ----------------------------- Check9: check exons ------------------------------
 Create one Exon for transcript1
-:FLUC	.	exon	1	1656	.	+	.	ID "nbis-exon-1"  ; Parent transcript1 ; gene FLUC ; product "firefly luciferase" 
+:FLUC	.	exon	1	1656	.	+	.	ID "nbis-exon-1"  ; Parent transcript1 ; gene FLUC ; gene_id FLUC ; product "firefly luciferase"  ; transcript_id FLUC_transcript
 Create one Exon for transcript2
-:WSN_HA	.	exon	33	1730	.	+	.	ID "nbis-exon-2"  ; Parent transcript2 ; gene WSN_HA ; product "WSN hemagglutinin" 
+:WSN_HA	.	exon	33	1730	.	+	.	ID "nbis-exon-2"  ; Parent transcript2 ; gene WSN_HA ; gene_id WSN_HA ; product "WSN hemagglutinin"  ; transcript_id HA_transcript
 Create one Exon for transcript4
-:WSN_NA	.	exon	20	1381	.	+	.	ID "nbis-exon-3"  ; Parent transcript4 ; gene WSN_NA ; product "WSN neuraminidase" 
+:WSN_NA	.	exon	20	1381	.	+	.	ID "nbis-exon-3"  ; Parent transcript4 ; gene WSN_NA ; gene_id WSN_NA ; product "WSN neuraminidase"  ; transcript_id NA_transcript
 3 exons created that were missing
 No exons locations modified
 No supernumerary exons removed
