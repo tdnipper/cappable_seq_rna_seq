@@ -114,17 +114,19 @@ for key in reads:
             ]
         )
 
+# Remove genome from memory
+subprocess.run(
+    [
+        "STAR",
+        "--genomeLoad",
+        "Remove",
+        "--genomeDir",
+        star_index_dir,
+        "--outFileNamePrefix",
+        f"{star_dir}/exit/exit",
+    ]
+)
+
 # Clean up
 if os.path.exists(f"{star_dir}/exit"):
-    subprocess.run(
-        [
-            "STAR",
-            "--genomeLoad",
-            "Remove",
-            "--genomeDir",
-            star_index_dir,
-            "--outFileNamePrefix",
-            f"{star_dir}/exit/exit",
-        ]
-    )
     shutil.rmtree(f"{star_dir}/exit")
