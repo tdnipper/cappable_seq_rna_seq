@@ -60,7 +60,7 @@ if not os.path.exists(salmon_index_dir):
                 sys.exit("Error: creating hybrid_transcripts.fasta failed")
         # Make hybrid_gentrome file
         result = subprocess.run(
-            f"cat {basedir}/genome/hybrid_genome.fasta {basedir}/genome/hybrid_transcripts.fasta > {basedir}/genome/hybrid_gentrome.fasta",
+            f"cat {basedir}/genome/hybrid_transcripts.fasta {basedir}/genome/hybrid_genome.fasta > {basedir}/genome/hybrid_gentrome.fasta",
             shell=True
         )
     # Run salmon index
@@ -76,6 +76,7 @@ if not os.path.exists(salmon_index_dir):
             "4",
             "-i",
             salmon_index_dir,
+            "--gencode"
         ]
     )
     if result.returncode != 0:
