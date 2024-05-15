@@ -32,3 +32,6 @@ salmon_quantification_trinity.isf
 salmon_quantification_trinity.isd
 !genome/WSN_annotated_sorted.gff
 salmon_quantification.A
+ref_seq old stuff
+refseq_old_stuff
+salmon_quantification_trinity.A
