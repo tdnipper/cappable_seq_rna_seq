@@ -1,17 +1,14 @@
 #! /usr/bin/env python3
 
 import os
-import sys
 import subprocess
-from filename_utils import get_filenames
 
 # Use this script to run salmon on star alignments to transcriptome
 # Assumes star index has already been created
 
 star_dir = "star_alignment"
 salmon_dir = "salmon_quantification_star"
-salmon_index = "trinity/salmon_index"  # Trinity generated index instead of hg38
-transcripts = "genome/hybrid_transcripts_gffread.fasta"
+transcripts = "genome/hybrid_transcripts_only_agat.fasta"
 PUID = os.getuid()
 PGID = os.getgid()
 
@@ -22,8 +19,6 @@ if not os.path.exists(salmon_dir):
 if not os.path.exists(star_dir):
     raise FileNotFoundError("Error: star alignments directory not found")
 
-if not os.path.exists(salmon_index):
-    raise FileNotFoundError("Error: salmon index directory not found")
 
 for dirpath, dirnames, filenames in os.walk(star_dir):
     for filename in filenames:
@@ -34,3 +29,5 @@ for dirpath, dirnames, filenames in os.walk(star_dir):
                 f"salmon quant -t {transcripts} -l A -a {dirpath}/{filename} -p 4 -o {salmon_dir}/{name}",
                 shell=True,
             )
+            if result.returncode != 0:
+                raise Exception(f"Error: salmon failed on {name}")
