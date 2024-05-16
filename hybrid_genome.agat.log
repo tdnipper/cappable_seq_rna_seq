@@ -1,0 +1,47 @@
+                            05/15/2024 at 19h10m41s                             
+
+
+ ------------------------------------------------------------------------------
+|   Another GFF Analysis Toolkit (AGAT) - Version: v1.4.0                      |
+|   https://github.com/NBISweden/AGAT                                          |
+|   National Bioinformatics Infrastructure Sweden (NBIS) - www.nbis.se         |
+ ------------------------------------------------------------------------------
+                                        
+                                       
+                          ------ Start parsing ------                           
+-------------------------- parse options and metadata --------------------------
+=> Accessing the feature_levels YAML file
+Using standard /home/ubuntu/miniconda3/envs/agat/lib/perl5/site_perl/auto/share/dist/AGAT/feature_levels.yaml file
+=> Attribute used to group features when no Parent/ID relationship exists (i.e common tag):
+	* locus_tag
+	* gene_id
+=> merge_loci option deactivated
+=> Machine information:
+	This script is being run by perl v5.32.1
+	Bioperl location being used: /home/ubuntu/miniconda3/envs/agat/lib/perl5/site_perl/Bio/
+	Operating system being used: linux 
+=> Accessing Ontology
+	No ontology accessible from the gff file header!
+	We use the SOFA ontology distributed with AGAT:
+		/home/ubuntu/miniconda3/envs/agat/lib/perl5/site_perl/auto/share/dist/AGAT/so.obo
+	Read ontology /home/ubuntu/miniconda3/envs/agat/lib/perl5/site_perl/auto/share/dist/AGAT/so.obo:
+		4 root terms, and 2596 total terms, and 1516 leaf terms
+	Filtering ontology:
+The feature type (3rd column) is constrained to be either a term from the Sequence Ontology or an SO accession number. The latter alternative is distinguished using the syntax SO:000000. In either case, it must be sequence_feature (SO:0000110) or an is_a child of it.
+We filter the ontology to apply this rule.		We found 1861 terms that are sequence_feature or is_a child of it.
+--------------------------------- parsing file ---------------------------------
+=> Number of line in file: 51662827
+=> Number of comment lines: 0
+=> Fasta included: No
+=> Number of features lines: 51662827
+=> Number of feature lines with 1 fields (while 9 expected): 51662827
+Use of uninitialized value $nb_ft in concatenation (.) or string at /home/ubuntu/miniconda3/envs/agat/lib/perl5/site_perl/AGAT/OmniscientI.pm line 3419.
+=> Number of feature type (3rd column): 
+	* Level1: 0 => 
+	* level2: 0 => 
+	* level3: 0 => 
+	* unknown: 0 => 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!Your file has less than 8 columns (1). It cannot be a GTF/GFF file. Please ver!
+!                                ify your file                                 !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
