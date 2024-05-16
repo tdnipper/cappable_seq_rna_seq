@@ -2,16 +2,19 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-no_cleanup = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_salmon_salmon_no_cleanup.txt", 
-                         sep="\t")
-with_cleanup = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_salmon_salmon_after_cleanup.txt",
-                         sep="\t")
+# no_cleanup = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_salmon_salmon_no_cleanup.txt", 
+#                          sep="\t")
+# with_cleanup = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_salmon_salmon_after_cleanup.txt",
+#                          sep="\t")
 
-trinity = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_salmon_salmon_mapped_to_trinity.txt",
-                         sep="\t")
+# trinity = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_salmon_salmon_mapped_to_trinity.txt",
+#                          sep="\t")
 
 star = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_star_star.txt",
                             sep="\t")
+
+salmon_gencode = pd.read_csv("multiqc_test/Cappable-seq-pilot_multiqc_report_data/multiqc_salmon_salmon_gencode.txt",
+                                sep="\t")
 
 
 def graph(data, title):
@@ -28,9 +31,10 @@ def graph(data, title):
     plt.savefig(f"{title}_mapped.png", dpi=300)
 
 
-graph(no_cleanup, "No Cleanup")
-graph(with_cleanup, "With Cleanup")
-graph(trinity, "Trinity")
+# graph(no_cleanup, "No Cleanup")
+# graph(with_cleanup, "With Cleanup")
+# graph(trinity, "Trinity")
+graph(salmon_gencode, "Salmon Gencode")
 
 # Include STAR as one off
 sns.set_theme(style="whitegrid")
