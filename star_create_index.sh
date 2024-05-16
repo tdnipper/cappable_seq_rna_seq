@@ -6,6 +6,9 @@ gff_file=genome/hybrid_annotated_agat_sort.gff
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
 
+# Set memory limit (in kilobytes, here it is 30GB)
+ulimit -v 32000000
+
 if [ ! -d $basedir/$index_dir ]; then
     mkdir -p $basedir/$index_dir
     chown $USER_ID:$GROUP_ID $basedir/$index_dir
