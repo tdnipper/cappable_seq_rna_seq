@@ -22,24 +22,30 @@ module_order:
   #     info: "This section of the report shows Samtools stats results for the star alignment."
   #     path_filters:
   #       # - "qc_reports/samtools-stats/*_ribodepleted_star.stats"
+  # - salmon:
+  #     name: "Salmon no cleanup"
+  #     anchor: "salmon_no_cleanup"
+  #     info: "Salmon quantification without myco cleanup"
+  #     path_filters:
+  #       - "salmon_quantification.old/*/*"
+  # - salmon:
+  #     name: "Salmon after cleanup"
+  #     anchor: "salmon_after_cleanup"
+  #     info: "Salmon quantification after myco cleanup"
+  #     path_filters:
+  #       - "salmon_quantification/*/*"
+  # - salmon:
+  #     name: "Salmon mapped to trinity"
+  #     anchor: "salmon_mapped_to_trinity"
+  #     info: "Salmon quantification using trinity index"
+  #     path_filters:
+  #       - "salmon_quantification_trinity/*/*"
   - salmon:
-      name: "Salmon no cleanup"
-      anchor: "salmon_no_cleanup"
-      info: "Salmon quantification without myco cleanup"
-      path_filters:
-        - "salmon_quantification.old/*/*"
-  - salmon:
-      name: "Salmon after cleanup"
-      anchor: "salmon_after_cleanup"
-      info: "Salmon quantification after myco cleanup"
+      name: "Salmon GENCODE"
+      anchor: "salmon_gencode"
+      info: "Salmon quantification using GENCODE index"
       path_filters:
         - "salmon_quantification/*/*"
-  - salmon:
-      name: "Salmon mapped to trinity"
-      anchor: "salmon_mapped_to_trinity"
-      info: "Salmon quantification using trinity index"
-      path_filters:
-        - "salmon_quantification_trinity/*/*"
   - salmon:
       name: "Salmon quantification of star alignment"
       anchor: "salmon_star"
