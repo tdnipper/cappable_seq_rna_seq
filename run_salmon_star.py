@@ -11,6 +11,7 @@ from filename_utils import get_filenames
 star_dir = "star_alignment"
 salmon_dir = "salmon_quantification_star"
 salmon_index = "trinity/salmon_index"  # Trinity generated index instead of hg38
+transcripts = "genome/hybrid_transcripts_gffread.fasta"
 PUID = os.getuid()
 PGID = os.getgid()
 
@@ -26,9 +27,10 @@ if not os.path.exists(salmon_index):
 
 for dirpath, dirnames, filenames in os.walk(star_dir):
     for filename in filenames:
-        if filename.endswith("Aligned.toTranscriptome.sorted.bam"):
-            name = filename.strip("_Aligned.toTranscriptome.sorted.bam")
+        if filename.endswith("Aligned.toTranscriptome.out.bam"):
+            name = filename.split("_")[0]
+            print(f"Running salmon on {name}")
             result = subprocess.run(
-                f"salmon quant -i {salmon_index} -l ISF -a {star_dir}.{filename} -p 4 -o {salmon_dir}/{name}",
+                f"salmon quant -t {transcripts} -l A -a {dirpath}/{filename} -p 4 -o {salmon_dir}/{name}",
                 shell=True,
             )
