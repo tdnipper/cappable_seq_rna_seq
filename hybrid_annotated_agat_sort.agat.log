@@ -530,4 +530,163 @@ Stop codon split over exons
 Stop codon split over exons
 Stop codon split over exons
 Stop codon split over exons
-Stop codo
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+Stop codon split over exons
+No problem found
+------------------------------ done in 5 seconds -------------------------------
+
+----------------------------- Check9: check exons ------------------------------
+No exons created
+No exons locations modified
+No supernumerary exons removed
+No level2 locations modified
+------------------------------ done in 39 seconds ------------------------------
+
+----------------------------- Check10: check utrs ------------------------------
+No UTRs created
+No UTRs locations modified
+No supernumerary UTRs removed
+------------------------------ done in 25 seconds ------------------------------
+
+------------------------ Check11: all level2 locations -------------------------
+No problem found
+------------------------------ done in 39 seconds ------------------------------
+
+------------------------ Check12: all level1 locations -------------------------
+No problem found
+------------------------------ done in 2 seconds -------------------------------
+
+---------------------- Check13: remove identical isoforms ----------------------
+None found
+------------------------------ done in 63 seconds ------------------------------
+                  ------ End checks (done in 239 second) ------                 
+
+
