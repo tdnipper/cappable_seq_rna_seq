@@ -6,8 +6,8 @@ gff_file=genome/hybrid_annotated_agat_sort.gff
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
 
-# Set memory limit (in kilobytes, here it is 32GB)
-ulimit -v 32000000
+# Set memory limit (in kilobytes, here it is 38GB)
+ulimit -v 38000000
 
 if [ ! -d $basedir/$index_dir ]; then
     mkdir -p $basedir/$index_dir
@@ -26,7 +26,7 @@ STAR \
     --genomeFastaFiles $basedir/$genome_file \
     --sjdbGTFfile $basedir/$gff_file \
     --sjdbOverhang 149 \
-    --limitGenomeGenerateRAM 30000000000 \
+    --limitGenomeGenerateRAM 36000000000 \
     --sjdbGTFtagExonParentTranscript Parent \
 
 # For 150bp paired end sequencing, the overhang should be read length - 1
