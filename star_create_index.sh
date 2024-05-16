@@ -2,7 +2,7 @@ basedir=/home/ubuntu/blockvolume/cappable_seq_rna_seq
 genome_dir=genome
 index_dir=genome/star_index
 genome_file=genome/hybrid_genome.fasta
-gff_file=genome/hybrid_annotated.gff
+gff_file=genome/hybrid_annotated_agat_sort.gff
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
 
