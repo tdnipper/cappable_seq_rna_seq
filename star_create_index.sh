@@ -22,7 +22,10 @@ STAR \
     --genomeDir $basedir/$index_dir \
     --genomeFastaFiles $basedir/$genome_file \
     --sjdbGTFfile $basedir/$gff_file \
-    --sjdbOverhang 100 \
-    --limitGenomeGenerateRAM 30000000000
+    --sjdbOverhang 149 \
+    --limitGenomeGenerateRAM 30000000000 \
+    --sjdbGTFtagExonParentTranscript Parent \
+
+# For 150bp paired end sequencing, the overhang should be read length - 1
 
 
