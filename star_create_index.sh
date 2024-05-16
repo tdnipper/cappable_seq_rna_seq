@@ -6,7 +6,7 @@ gff_file=genome/hybrid_annotated_agat_sort.gff
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
 
-# Set memory limit (in kilobytes, here it is 30GB)
+# Set memory limit (in kilobytes, here it is 32GB)
 ulimit -v 32000000
 
 if [ ! -d $basedir/$index_dir ]; then
