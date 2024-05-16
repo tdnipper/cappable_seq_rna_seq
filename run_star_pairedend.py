@@ -40,7 +40,7 @@ for key in reads:
 for key in reads:
     if "_nonrRNA" in key:
         keyname = key.replace("_nonrRNA", "")
-        subprocess.run(
+        result = subprocess.run(
             [
                 "STAR",
                 "--runThreadN",
@@ -62,8 +62,10 @@ for key in reads:
                 "zcat",
             ]
         )
+        if result.returncode != 0:
+            raise RuntimeError(f"Error: STAR failed to align {key}")
         # Sort and index bam files
-        subprocess.run(
+        result = subprocess.run(
             [
                 "samtools",
                 "view",
@@ -72,8 +74,10 @@ for key in reads:
                 f"{star_dir}/{keyname}/{keyname}_aligned.bam",
             ]
         )
+        if result.returncode != 0:
+            raise RuntimeError(f"Error: samtools failed to convert {key} to bam")
         os.remove(f"{star_dir}/{keyname}/{keyname}_Aligned.out.sam")
-        subprocess.run(
+        result = subprocess.run(
             [
                 "samtools",
                 "sort",
@@ -84,7 +88,11 @@ for key in reads:
                 "4",
             ]
         )
-        subprocess.run(
+        if result.returncode != 0:
+            raise RuntimeError(
+                f"Error: samtools failed to sort {key}_Aligned.toTranscriptome.out.bam"
+            )
+        result = subprocess.run(
             [
                 "samtools",
                 "sort",
@@ -95,7 +103,9 @@ for key in reads:
                 "4",
             ]
         )
-        subprocess.run(
+        if result.returncode != 0:
+            raise RuntimeError(f"Error: samtools failed to sort {key}_aligned.bam")
+        result = subprocess.run(
             [
                 "samtools",
                 "index",
@@ -104,7 +114,11 @@ for key in reads:
                 "4",
             ]
         )
-        subprocess.run(
+        if result.returncode != 0:
+            raise RuntimeError(
+                f"Error: samtools failed to index {key}_Aligned.toTranscriptome.sorted.bam"
+            )
+        result = subprocess.run(
             [
                 "samtools",
                 "index",
@@ -113,9 +127,13 @@ for key in reads:
                 "4",
             ]
         )
+        if result.returncode != 0:
+            raise RuntimeError(
+                f"Error: samtools failed to index {key}_coord_sorted.bam"
+            )
 
 # Remove genome from memory
-subprocess.run(
+result = subprocess.run(
     [
         "STAR",
         "--genomeLoad",
@@ -126,6 +144,8 @@ subprocess.run(
         f"{star_dir}/exit/exit",
     ]
 )
+if result.returncode != 0:
+    raise RuntimeError(f"Error: STAR failed to remove genome from memory")
 
 # Clean up
 if os.path.exists(f"{star_dir}/exit"):
