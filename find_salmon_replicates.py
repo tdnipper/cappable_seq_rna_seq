@@ -52,12 +52,13 @@ if not os.path.exists(salmon_index_dir):
                 sys.exit("Error: creating decoys.txt failed")
         # Make hybrid transcript file
         if not os.path.exists(f"{basedir}/genome/hybrid_transcripts.fasta"):
-            result = subprocess.run(
-                f"cat {basedir}/genome/gencode.v46.transcripts.fa {basedir}/genome/WSN_transcripts.fasta > {basedir}/genome/hybrid_transcripts.fasta",
-                shell=True
-            )
-            if result.returncode != 0:
-                sys.exit("Error: creating hybrid_transcripts.fasta failed")
+            raise FileNotFoundError("hybrid_transcripts.fasta not found")
+            # result = subprocess.run(
+            #     f"cat {basedir}/genome/gencode.v46.transcripts.fa {basedir}/genome/WSN_transcripts.fasta > {basedir}/genome/hybrid_transcripts.fasta",
+            #     shell=True
+            # )
+            # if result.returncode != 0:
+            #     sys.exit("Error: creating hybrid_transcripts.fasta failed")
         # Make hybrid_gentrome file
         result = subprocess.run(
             f"cat {basedir}/genome/hybrid_transcripts.fasta {basedir}/genome/hybrid_genome.fasta > {basedir}/genome/hybrid_gentrome.fasta",
