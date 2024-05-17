@@ -4,7 +4,7 @@ basedir=/home/ubuntu/blockvolume/cappable_seq_rna_seq
 genome_dir=genome
 index_dir=genome/star_index
 genome_file=genome/hybrid_genome.fasta
-gff_file=genome/hybrid_annotated_agat_sort.gtf
+gtf_file=genome/hybrid_annotated_agat_sort.gtf
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
 
@@ -26,10 +26,9 @@ STAR \
     --runMode genomeGenerate \
     --genomeDir $basedir/$index_dir \
     --genomeFastaFiles $basedir/$genome_file \
-    --sjdbGTFfile $basedir/$gff_file \
+    --sjdbGTFfile $basedir/$gtf_file \
     --sjdbOverhang 149 \
     --limitGenomeGenerateRAM 36000000000 \
-    --sjdbGTFtagExonParentTranscript Parent \
 
 # For 150bp paired end sequencing, the overhang should be read length - 1
 
