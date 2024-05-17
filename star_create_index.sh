@@ -1,8 +1,10 @@
+# This script creates a star index from the hybrid genome using hybrid gtf from agat created hybrid gff
+
 basedir=/home/ubuntu/blockvolume/cappable_seq_rna_seq
 genome_dir=genome
 index_dir=genome/star_index
 genome_file=genome/hybrid_genome.fasta
-gff_file=genome/hybrid_annotated_agat_sort.gff
+gff_file=genome/hybrid_annotated_agat_sort.gtf
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
 
