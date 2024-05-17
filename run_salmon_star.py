@@ -8,7 +8,7 @@ import subprocess
 
 star_dir = "star_alignment"
 salmon_dir = "salmon_quantification_star"
-transcripts = "genome/hybrid_transcripts_only_agat.fasta"
+transcripts = "genome/hybrid_transcripts_gffread.fasta"
 PUID = os.getuid()
 PGID = os.getgid()
 
@@ -22,7 +22,7 @@ if not os.path.exists(star_dir):
 
 for dirpath, dirnames, filenames in os.walk(star_dir):
     for filename in filenames:
-        if filename.endswith("Aligned.toTranscriptome.out.bam"):
+        if filename.endswith("Aligned.toTranscriptome.sorted.bam"):
             name = filename.split("_")[0]
             print(f"Running salmon on {name}")
             result = subprocess.run(
