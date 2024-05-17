@@ -1,4 +1,4 @@
-                            05/17/2024 at 12h30m01s                             
+                            05/17/2024 at 12h40m34s                             
 
 
  ------------------------------------------------------------------------------
@@ -30,14 +30,14 @@ Using standard /home/ubuntu/miniconda3/envs/agat/lib/perl5/site_perl/auto/share/
 The feature type (3rd column) is constrained to be either a term from the Sequence Ontology or an SO accession number. The latter alternative is distinguished using the syntax SO:000000. In either case, it must be sequence_feature (SO:0000110) or an is_a child of it.
 We filter the ontology to apply this rule.		We found 1861 terms that are sequence_feature or is_a child of it.
 --------------------------------- parsing file ---------------------------------
-=> Number of line in file: 64
+=> Number of line in file: 71
 => Number of comment lines: 10
 => Fasta included: No
-=> Number of features lines: 54
+=> Number of features lines: 61
 => Number of feature type (3rd column): 7
 	* Level1: 1 => gene
 	* level2: 2 => RNA transcript
-	* level3: 4 => exon CDS five_prime_UTR three_prime_UTR
+	* level3: 4 => five_prime_UTR exon three_prime_UTR CDS
 	* unknown: 0 => 
 => Version of the Bioperl GFF parser selected by AGAT: 3
 
