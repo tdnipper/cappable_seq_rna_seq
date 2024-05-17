@@ -1,4 +1,4 @@
-                            05/16/2024 at 10h10m22s                             
+                            05/16/2024 at 21h47m19s                             
 
 
  ------------------------------------------------------------------------------
@@ -37,11 +37,11 @@ We filter the ontology to apply this rule.		We found 1861 terms that are sequenc
 => Number of feature type (3rd column): 9
 	* Level1: 1 => gene
 	* level2: 2 => RNA transcript
-	* level3: 6 => five_prime_UTR three_prime_UTR CDS exon start_codon stop_codon
+	* level3: 6 => start_codon stop_codon three_prime_UTR exon CDS five_prime_UTR
 	* unknown: 0 => 
 => Version of the Bioperl GFF parser selected by AGAT: 3
 
-                 ------ End parsing (done in 687 second) ------                 
+                 ------ End parsing (done in 707 second) ------                 
 
 
                            ------ Start checks ------                           
@@ -65,15 +65,15 @@ None found
 
 -------------------------- Check3: sequential bucket ---------------------------
 None found
------------------------------- done in 4 seconds -------------------------------
+------------------------------ done in 3 seconds -------------------------------
 
 --------------------------- Check4: l2 linked to l3 ----------------------------
 No problem found
------------------------------- done in 2 seconds -------------------------------
+------------------------------ done in 3 seconds -------------------------------
 
 --------------------------- Check5: l1 linked to l2 ----------------------------
 No problem found
------------------------------- done in 1 seconds -------------------------------
+------------------------------ done in 0 seconds -------------------------------
 
 --------------------------- Check6: remove orphan l1 ---------------------------
 We remove only those not supposed to be orphan
@@ -81,7 +81,7 @@ None found
 ------------------------------ done in 0 seconds -------------------------------
 
 ------------------------- Check7: all level3 locations -------------------------
------------------------------- done in 57 seconds ------------------------------
+------------------------------ done in 60 seconds ------------------------------
 
 ------------------------------ Check8: check cds -------------------------------
 Stop codon split over exons
@@ -668,17 +668,17 @@ No exons created
 No exons locations modified
 No supernumerary exons removed
 No level2 locations modified
------------------------------- done in 38 seconds ------------------------------
+------------------------------ done in 40 seconds ------------------------------
 
 ----------------------------- Check10: check utrs ------------------------------
 No UTRs created
 No UTRs locations modified
 No supernumerary UTRs removed
------------------------------- done in 24 seconds ------------------------------
+------------------------------ done in 25 seconds ------------------------------
 
 ------------------------ Check11: all level2 locations -------------------------
 No problem found
------------------------------- done in 38 seconds ------------------------------
+------------------------------ done in 41 seconds ------------------------------
 
 ------------------------ Check12: all level1 locations -------------------------
 No problem found
@@ -686,7 +686,7 @@ No problem found
 
 ---------------------- Check13: remove identical isoforms ----------------------
 None found
------------------------------- done in 60 seconds ------------------------------
-                  ------ End checks (done in 231 second) ------                 
+------------------------------ done in 61 seconds ------------------------------
+                  ------ End checks (done in 240 second) ------                 
 
 
