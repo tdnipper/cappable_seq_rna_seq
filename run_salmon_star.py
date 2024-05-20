@@ -2,13 +2,14 @@
 
 import os
 import subprocess
+from filename_utils import get_filenames_filepaths
 
 # Use this script to run salmon on star alignments to transcriptome
 # Assumes star index has already been created
 
 star_dir = "star_alignment"
 salmon_dir = "salmon_quantification_star"
-transcripts = "genome/hybrid_transcripts_gffread.fasta"
+transcripts = "genome/hybrid_transcript_gffread.fasta"
 PUID = os.getuid()
 PGID = os.getgid()
 
@@ -19,15 +20,27 @@ if not os.path.exists(salmon_dir):
 if not os.path.exists(star_dir):
     raise FileNotFoundError("Error: star alignments directory not found")
 
+file_filter = lambda x: x.endswith("_Aligned.toTranscriptome.out.bam")
+files = get_filenames_filepaths(star_dir, "_Aligned.toTranscriptome.out.bam", file_filter=file_filter)
 
-for dirpath, dirnames, filenames in os.walk(star_dir):
-    for filename in filenames:
-        if filename.endswith("Aligned.toTranscriptome.sorted.bam"):
-            name = filename.split("_")[0]
-            print(f"Running salmon on {name}")
-            result = subprocess.run(
-                f"salmon quant -t {transcripts} -l A -a {dirpath}/{filename} -p 4 -o {salmon_dir}/{name}",
-                shell=True,
-            )
-            if result.returncode != 0:
-                raise Exception(f"Error: salmon failed on {name}")
+
+for name in files:
+    print(f"Running salmon on {name}")
+    result = subprocess.run(
+        f"salmon quant -t {transcripts} -l A -a {files[name][0]} -p 4 -o {salmon_dir}/{name}",
+        shell=True
+    )
+    if result.returncode != 0:
+        raise Exception(f"Error: salmon failed on {name}")
+
+# for dirpath, dirnames, filenames in os.walk(star_dir):
+#     for filename in filenames:
+#         if filename.endswith("Aligned.toTranscriptome.sorted.bam"):
+#             name = filename.split("_")[0]
+#             print(f"Running salmon on {name}")
+#             result = subprocess.run(
+#                 f"salmon quant -t {transcripts} -l A -a {dirpath}/{filename} -p 4 -o {salmon_dir}/{name}",
+#                 shell=True,
+#             )
+#             if result.returncode != 0:
+#                 raise Exception(f"Error: salmon failed on {name}")
