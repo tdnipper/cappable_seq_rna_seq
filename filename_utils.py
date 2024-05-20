@@ -48,7 +48,10 @@ def get_filenames_filepaths(directory: str, prefix1: str = "_R1", prefix2: str =
     for dirpath, dirnames, filenames in os.walk(directory):
         for file in filenames:
             if file_filter is None or file_filter(file):
-                name = file.split(prefix1)[0]
+                if prefix1 in file:
+                    name = file.split(prefix1)[0]
+                elif prefix2 in file:
+                    name = file.split(prefix2)[0]
                 if name not in files:
                     files[name] = {}
                 if prefix1 in file:
