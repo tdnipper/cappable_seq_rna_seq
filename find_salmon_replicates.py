@@ -27,6 +27,7 @@ wsn_genome_file = f"{basedir}/genome/WSN_Mehle.fasta"
 hybrid_genome_file = f"{basedir}/genome/hybrid_genome.fasta"
 
 if not os.path.exists(salmon_dir):
+    print("Creating salmon_quantification directory")
     os.mkdir(salmon_dir)
     os.chown(salmon_dir, PUID, PGID)
 
@@ -39,7 +40,6 @@ if not os.path.exists(salmon_index_dir):
     if not os.path.exists(f"{hybrid_gentrome_file}"):
         print("creating hybrid_gentrome.fasta")
         # Make hybrid genome file
-        # if not os.path.exists(f"{basedir}/genome/hybrid_genome.fasta"):
         result = subprocess.run(
             f"cat {human_genome_file} {wsn_genome_file} > {hybrid_genome_file}",
             shell=True,
@@ -88,34 +88,6 @@ replicates = get_filenames_filepaths(
     reads_dir, "_R1", "_R2", file_filter=lambda x: x.endswith(".fastq.gz")
 )
 
-# for key in replicates:
-#     if "_nonrRNA" in key:
-#         name = key.strip("_nonrRNA")
-#         subprocess.run(
-#             [
-#                 "salmon",
-#                 "quant",
-#                 "-i",
-#                 salmon_index_dir,
-#                 "-l",
-#                 "ISF",  # This might not be correct or consistent, check log files
-#                 # f"<(cat {reads_dir + replicates[key][0]} {reads_dir + replicates[key][1]})"
-#                 "-1",
-#                 reads_dir + "/" + replicates[key][0],
-#                 "-2",
-#                 reads_dir + "/" + replicates[key][1],
-#                 "--validateMappings",
-#                 "-p",
-#                 "4",
-#                 "--seqBias",
-#                 "--gcBias",
-#                 "--reduceGCMemory",
-#                 "--writeUnmappedNames",
-#                 "-o",
-#                 salmon_dir + "/" + name,
-#             ]
-#         )
-
 for key in replicates:
     result = subprocess.run(
         f"salmon \
@@ -146,3 +118,4 @@ for dirpath, dirnames, filenames in os.walk(salmon_dir):
                 (os.path.join(dirpath, file)),
                 (os.path.join(dirpath, sample_name + "_quant.sf")),
             )
+            

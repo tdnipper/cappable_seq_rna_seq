@@ -32,15 +32,3 @@ for name in files:
     )
     if result.returncode != 0:
         raise Exception(f"Error: salmon failed on {name}")
-
-# for dirpath, dirnames, filenames in os.walk(star_dir):
-#     for filename in filenames:
-#         if filename.endswith("Aligned.toTranscriptome.sorted.bam"):
-#             name = filename.split("_")[0]
-#             print(f"Running salmon on {name}")
-#             result = subprocess.run(
-#                 f"salmon quant -t {transcripts} -l A -a {dirpath}/{filename} -p 4 -o {salmon_dir}/{name}",
-#                 shell=True,
-#             )
-#             if result.returncode != 0:
-#                 raise Exception(f"Error: salmon failed on {name}")
