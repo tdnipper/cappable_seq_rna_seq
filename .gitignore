@@ -37,3 +37,4 @@ refseq_old_stuff
 salmon_quantification_trinity.A
 salmon_quantification_star
 trinity_independent
+bbduk_reads
