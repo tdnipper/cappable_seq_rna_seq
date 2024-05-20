@@ -1,7 +1,7 @@
 import os
 import shutil
 import subprocess
-from filename_utils import get_filenames
+from filename_utils import get_filenames_filepaths
 
 # This script runs star on paired end R1 R2 reads after ribodepletion
 
@@ -12,7 +12,7 @@ __date__ = "2024-05-07"
 basedir = os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
-reads_dir = f"{basedir}/ribodepleted_reads"
+reads_dir = f"{basedir}/bbduk_reads"
 
 if not os.path.exists(reads_dir):
     raise FileNotFoundError(
@@ -30,7 +30,9 @@ if not os.path.exists(star_index_dir):
         f"Error: STAR index directory does not exist at {star_index_dir}"
     )
 
-reads = get_filenames(reads_dir)
+# reads = get_filenames(reads_dir)
+reads = get_filenames_filepaths(reads_dir, "_R1", "_R2", file_filter=lambda x: "nonrRNA" in x)
+
 
 for key in reads:
     if len(reads[key]) != 2:
@@ -38,8 +40,7 @@ for key in reads:
 
 # Run star alignment on each sample in paired-end mode
 for key in reads:
-    if "_nonrRNA" in key:
-        keyname = key.replace("_nonrRNA", "")
+        keyname = key # used to split key, not needed now but keeping syntax the same
         result = subprocess.run(
             [
                 "STAR",
@@ -48,8 +49,8 @@ for key in reads:
                 "--genomeDir",
                 star_index_dir,
                 "--readFilesIn",
-                f"{reads_dir}/{reads[key][0]}",
-                f"{reads_dir}/{reads[key][1]}",
+                f"{reads[key][0]}",
+                f"{reads[key][1]}",
                 "--outFileNamePrefix",
                 f"{star_dir}/{keyname}/{keyname}_",
                 "--quantMode",
