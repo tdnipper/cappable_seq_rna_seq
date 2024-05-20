@@ -15,7 +15,10 @@ def get_filenames(directory):
             if ".log" not in file:
                 name = file.split("_R")[0]
                 if name not in replicates:
-                    replicates[name] = []
-                replicates[name].append(file)
+                    replicates[name] = {}
+                if "R1" in file:
+                    replicates[name][0] = os.path.join(dirpath, file)
+                elif "R2" in file:
+                    replicates[name][1] = os.path.join(dirpath, file)
 
     return replicates
