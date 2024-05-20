@@ -17,8 +17,8 @@ def get_filenames(directory):
                 if name not in replicates:
                     replicates[name] = {}
                 if "R1" in file:
-                    replicates[name][0] = os.path.join(dirpath, file)
+                    replicates[name][0] = file
                 elif "R2" in file:
-                    replicates[name][1] = os.path.join(dirpath, file)
+                    replicates[name][1] = file
 
     return replicates
