@@ -23,7 +23,7 @@ if not os.path.exists(sort_dir):
 replicates = get_filenames(trimmed_reads_dir)
 
 for key in replicates:
-    subprocess.run(["sortmerna",
+    result = subprocess.run(["sortmerna",
                     "-ref",
                     ribofile,
                     "-reads",
@@ -41,6 +41,8 @@ for key in replicates:
                     "4",
                     "-workdir",
                     f"{sort_dir}/tmp"])
+    if result.returncode != 0:
+        raise RuntimeError("Error: sortmerna failed")
     
     shutil.rmtree(f"{sort_dir}/tmp/kvdb")
 
