@@ -4,11 +4,11 @@ import subprocess
 
 trimmed_dir = "trimmed_reads"
 out_dir = "bbduk_reads"
+ref_file = "human_rRNAs.fasta"
 PUID = os.getuid()
 PGID = os.getgid()
 
 files = get_filenames_filepaths(trimmed_dir, "_R1", "_R2", file_filter = lambda x: x.endswith(".fastq.gz"))
-# print(files)
 
 if not os.path.exists(out_dir):
     os.makedirs(out_dir)
@@ -25,7 +25,7 @@ for sample in files:
                             outm2={out_dir}/{sample}_R2_rRNA.fastq.gz \
                             stats={out_dir}/{sample}_stats.txt \
                             k=27 \
-                            ref=decon_reads.fasta",
+                            ref={ref_file}",
                             shell=True)
     if result.returncode != 0:
         raise Exception(f"Error: bbduk failed on {sample}")
