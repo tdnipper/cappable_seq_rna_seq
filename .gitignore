@@ -39,3 +39,4 @@ salmon_quantification_star
 trinity_independent
 bbduk_reads
 trinity_genome_guided
+bbsplit_reads
