@@ -12,6 +12,7 @@ salmon_dir = "salmon_quantification_star"
 transcripts = "genome/hybrid_transcript_gffread.fasta"
 PUID = os.getuid()
 PGID = os.getgid()
+CPU = os.cpu_count()
 
 if not os.path.exists(salmon_dir):
     os.makedirs(salmon_dir)
@@ -27,7 +28,7 @@ files = get_filenames_filepaths(star_dir, "_Aligned.toTranscriptome.out.bam", fi
 for name in files:
     print(f"Running salmon on {name}")
     result = subprocess.run(
-        f"salmon quant -t {transcripts} -l A -a {files[name][0]} -p 4 -o {salmon_dir}/{name}",
+        f"salmon quant -t {transcripts} -l A -a {files[name][0]} -p {CPU} -o {salmon_dir}/{name}",
         shell=True
     )
     if result.returncode != 0:

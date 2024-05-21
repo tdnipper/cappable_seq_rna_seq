@@ -25,6 +25,7 @@ hybrid_gentrome_file = f"{salmon_dir}/hybrid_gentrome.fasta"
 human_genome_file = f"{basedir}/genome/GRCh38.primary_assembly.genome.fa"
 wsn_genome_file = f"{basedir}/genome/WSN_Mehle.fasta"
 hybrid_genome_file = f"{basedir}/genome/hybrid_genome.fasta"
+CPU = os.cpu_count()
 
 if not os.path.exists(salmon_dir):
     print("Creating salmon_quantification directory")
@@ -43,6 +44,7 @@ if not os.path.exists(salmon_index_dir):
         result = subprocess.run(
             f"cat {human_genome_file} {wsn_genome_file} > {hybrid_genome_file}",
             shell=True,
+            check=True
         )
         if result.returncode != 0:
             sys.exit("Error: creating hybrid_genome.fasta failed")
@@ -52,6 +54,7 @@ if not os.path.exists(salmon_index_dir):
                 f"cat {basedir}/genome/hybrid_genome.fasta | grep '^>' | cut -d ' ' -f 1 > {basedir}/genome/decoys.txt && \
                     sed -i.bak -e 's/>//g' {basedir}/genome/decoys.txt",
                 shell=True,
+                check=True
             )
             if result.returncode != 0:
                 sys.exit("Error: creating decoys.txt failed")
@@ -62,19 +65,15 @@ if not os.path.exists(salmon_index_dir):
         result = subprocess.run(
             f"cat {transcript_file} {hybrid_genome_file} > {hybrid_gentrome_file}",
             shell=True,
+            check=True
         )
         if result.returncode != 0:
             sys.exit("Error: creating hybrid_gentrome.fasta failed")
     # Run salmon index
     result = subprocess.run(
-            f"salmon \
-            index \
-            -t {hybrid_gentrome_file} \
-            -d genome/decoys.txt \
-            -p 4 \
-            -i {salmon_index_dir} \
-            --gencode",
-            shell=True
+        f"salmon index -t {hybrid_gentrome_file} -d genome/decoys.txt -p {CPU} -i {salmon_index_dir} --gencode",
+        shell=True,
+        check=True
     )
     if result.returncode != 0:
         sys.exit("Error: Salmon index failed")
@@ -97,13 +96,14 @@ for key in replicates:
                             -1 {replicates[key][0]} \
                             -2 {replicates[key][1]} \
                             --validateMappings \
-                            -p 4 \
+                            -p {CPU} \
                             --seqBias \
                             --gcBias \
                             --reduceGCMemory \
                             --writeUnmappedNames \
                             -o {salmon_dir}/{key}",
         shell=True,
+        check=True
     )
     if result.returncode != 0:
         sys.exit(f"Error: salmon failed on {key}")

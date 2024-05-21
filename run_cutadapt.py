@@ -8,7 +8,7 @@ PGID = os.getgid()
 raw_dir = f"{basedir}/raw_data"
 trimmed_dir = f"{basedir}/trimmed_reads"
 log_dir = f"{basedir}/logs"
-CPU="8"
+CPU=os.cpu_count()
 
 if not os.path.exists(f"{log_dir}/cutadapt"):
     os.makedirs(f"{log_dir}/cutadapt", mode=0o775)
