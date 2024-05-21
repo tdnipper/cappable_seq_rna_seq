@@ -4,7 +4,7 @@ import subprocess
 leftfiles = []
 rightfiles = []
 
-CPU = "8"
+CPU = os.cpu_count()
 
 reads = {}
 
