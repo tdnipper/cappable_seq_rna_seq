@@ -32,7 +32,7 @@ result = subprocess.run(f"Trinity \
                         --left {leftfiles} \
                         --right {rightfiles} \
                         --seqType fq \
-                        --CPU 4 \
+                        --CPU 8 \
                         --max_memory 35G \
                         --output {trinity_outdir} \
                         --full_cleanup",
