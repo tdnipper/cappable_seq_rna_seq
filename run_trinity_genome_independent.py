@@ -4,6 +4,8 @@ import subprocess
 leftfiles = []
 rightfiles = []
 
+CPU = "8"
+
 reads = {}
 
 trinity_outdir = 'trinity_independent/'
@@ -32,7 +34,7 @@ result = subprocess.run(f"Trinity \
                         --left {leftfiles} \
                         --right {rightfiles} \
                         --seqType fq \
-                        --CPU 8 \
+                        --CPU {CPU} \
                         --max_memory 35G \
                         --output {trinity_outdir} \
                         --full_cleanup",
