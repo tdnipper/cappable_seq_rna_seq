@@ -8,6 +8,7 @@ PGID = os.getgid()
 raw_dir = f"{basedir}/raw_data"
 trimmed_dir = f"{basedir}/trimmed_reads"
 log_dir = f"{basedir}/logs"
+CPU="8"
 
 if not os.path.exists(f"{log_dir}/cutadapt"):
     os.makedirs(f"{log_dir}/cutadapt", mode=0o775)
@@ -40,7 +41,7 @@ for key in replicates:
                     "--minimum-length",
                     "25",
                     "-j",
-                    "3",
+                    f"{CPU}",
                     f"--json={log_dir}/cutadapt/{key}.cutadapt.json",
                     ])
 
@@ -49,4 +50,4 @@ subprocess.run(["fastqc",
                 "-o",
                 f"{basedir}/fastqc/trimmed_reads/",
                 "-t",
-                "3"])
+                f"{CPU}"])
