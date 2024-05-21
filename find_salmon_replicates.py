@@ -101,7 +101,9 @@ for key in replicates:
                             --gcBias \
                             --reduceGCMemory \
                             --writeUnmappedNames \
-                            -o {salmon_dir}/{key}",
+                            -o {salmon_dir}/{key} \
+                            --recoverOrphans \
+                            --numBootstraps 30",
         shell=True,
         check=True
     )
