@@ -38,7 +38,7 @@ for key in replicates:
                     "-q",
                     "20",
                     "--minimum-length",
-                    "20",
+                    "25",
                     "-j",
                     "3",
                     f"--json={log_dir}/cutadapt/{key}.cutadapt.json",
