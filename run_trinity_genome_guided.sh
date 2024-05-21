@@ -1,6 +1,6 @@
 #! /bin/bash
 
-CPU=8
+CPU=$(nproc)
 
 # genome guided trinity on merged bam file
 
