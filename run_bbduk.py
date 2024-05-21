@@ -26,6 +26,7 @@ for sample in files:
                             stats={out_dir}/{sample}_stats.txt \
                             k=27 \
                             ref={ref_file}",
-                            shell=True)
+                            shell=True,
+                            check=True)
     if result.returncode != 0:
         raise Exception(f"Error: bbduk failed on {sample}")
