@@ -12,7 +12,7 @@ __date__ = "2024-05-07"
 basedir = os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
-reads_dir = f"{basedir}/bbduk_reads"
+reads_dir = f"{basedir}/bbsplit_reads"
 CPU = os.cpu_count()
 
 if not os.path.exists(reads_dir):
@@ -33,7 +33,7 @@ if not os.path.exists(star_index_dir):
 
 # reads = get_filenames(reads_dir)
 reads = get_filenames_filepaths(
-    reads_dir, "_R1", "_R2", file_filter=lambda x: "nonrRNA" in x
+    reads_dir, "_1", "_2", file_filter=lambda x: "hybrid_genome" in x
 )
 
 

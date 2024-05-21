@@ -18,7 +18,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 PUID = os.getuid()
 PGID = os.getgid()
 salmon_dir = f"{basedir}/salmon_quantification"
-reads_dir = f"{basedir}/bbduk_reads"
+reads_dir = f"{basedir}/bbsplit_reads"
 salmon_index_dir = f"{basedir}/genome/salmon_index"
 transcript_file = f"{basedir}/genome/hybrid_transcript_gffread.fasta"
 hybrid_gentrome_file = f"{salmon_dir}/hybrid_gentrome.fasta"
@@ -84,7 +84,7 @@ if not os.path.exists(salmon_index_dir):
 
 # replicates = get_filenames(reads_dir)
 replicates = get_filenames_filepaths(
-    reads_dir, "_R1", "_R2", file_filter=lambda x: x.endswith(".fastq.gz") and "nonrRNA" in x
+    reads_dir, "_1", "_2", file_filter=lambda x: "hybrid_genome" in x
 )
 
 for key in replicates:
