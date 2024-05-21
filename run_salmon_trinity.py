@@ -16,6 +16,7 @@ salmon_dir = f"{basedir}/salmon_quantification_trinity"
 reads_dir = f"{basedir}/ribodepleted_reads"
 trinity_file = f"{basedir}/trinity/Trinity-GG.fasta"
 genome_dir = f"{basedir}/genome"
+CPU = os.cpu_count()
 
 # Use this script to run Salmon quantification on the Trinity assembled transcripts
 
@@ -38,56 +39,45 @@ if not os.path.exists(salmon_index_dir):
     os.mkdir(salmon_index_dir)
     os.chown(salmon_index_dir, PUID, PGID)
    
-    # Check for hybrid decoys.txt from hg38 and WSN genomes
-    if not os.path.exists(f"{genome_dir}/decoys.txt"):
-        print("decoys.txt not found, creating...")
-        result = subprocess.run(
-            [
-                "grep",
-                "'^>'",
-                f"<(cat {genome_dir}/hybrid_genome.fasta) | cut -d ' ' -f 1 > {genome_dir}/decoys.txt",
-            ]
-        )
-        if result.returncode != 0:
-            raise RuntimeError("Error: Failed to create trinity_decoys.txt!")
-        result = subprocess.run(
-            ["sed", "-i.bak", "-e", "s/>//g", f"{genome_dir}/decoys.txt"]
-        )
-        if result.returncode != 0:
-            raise RuntimeError("Error: Failed to edit trinity_decoys.txt!")
+# Check for hybrid decoys.txt from hg38 and WSN genomes
+if not os.path.exists(f"{genome_dir}/decoys.txt"):
+    print("decoys.txt not found, creating...")
+    result = subprocess.run(
+        f"grep '^>' <(cat {genome_dir}/hybrid_genome.fasta) | cut -d ' ' -f 1 > {genome_dir}/decoys.txt",
+        shell=True,
+        check=True
+    )
+    subprocess.run(
+        f"sed -i.bak -e 's/>//g' {genome_dir}/decoys.txt",
+        shell=True,
+        check=True
+    )
+    if result.returncode != 0:
+        raise RuntimeError("Error: Failed to edit trinity_decoys.txt!")
     
     if not os.path.exists(trinity_file):
         raise FileNotFoundError("Error: Trinity-GG.fasta not found!")
+
+# Create hybrid gentrome out of trinity and hybrid genome from hg38 and WSN
+if not os.path.exists(f"{genome_dir}/hybrid_genome.fasta"):
+    raise FileNotFoundError("Error: hybrid_genome.fasta not found!")
     
-    # Create hybrid gentrome out of trinity and hybrid genome from hg38 and WSN
-    if not os.path.exists(f"{genome_dir}/hybrid_genome.fasta"):
-        raise FileNotFoundError("Error: hybrid_genome.fasta not found!")
-    
-    if not os.path.exists("trinity/trinity_gentrome.fasta"):
-        print("trinity_gentrome.fasta not found, creating...")
-        result = subprocess.run(
-            f"cat {trinity_file} {genome_dir}/hybrid_genome.fasta > trinity/trinity_gentrome.fasta",
-            shell=True,
-        )
-        if result.returncode != 0:
-            raise RuntimeError("Error: Failed to create trinity_gentrome.fasta!")
-    
+if not os.path.exists("trinity/trinity_gentrome.fasta"):
+    print("trinity_gentrome.fasta not found, creating...")
     result = subprocess.run(
-        [
-            "salmon",
-            "index",
-            "-t",
-            "trinity/trinity_gentrome.fasta",
-            "-d",
-            f"{genome_dir}/decoys.txt",
-            "-i",
-            salmon_index_dir,
-            "-p",
-            "4",
-        ]
+        f"cat {trinity_file} {genome_dir}/hybrid_genome.fasta > trinity/trinity_gentrome.fasta",
+        shell=True,
     )
     if result.returncode != 0:
-        raise RuntimeError("Error: Failed to create trinity salmon index!")
+        raise RuntimeError("Error: Failed to create trinity_gentrome.fasta!")
+
+result = subprocess.run(
+    f"salmon index -t trinity/trinity_gentrome.fasta -d {genome_dir}/decoys.txt -i {salmon_index_dir} -p {CPU}",
+    shell=True,
+    check=True
+)
+if result.returncode != 0:
+    raise RuntimeError("Error: Failed to create trinity salmon index!")
 
 if not os.path.exists(salmon_dir):
     os.mkdir(salmon_dir)
@@ -97,26 +87,14 @@ if not os.path.exists(salmon_dir):
 files = get_filenames(reads_dir)
 
 # Run salmon quantification aligning to Trinity assembled transcripts
+# Run salmon quantification aligning to Trinity assembled transcripts
 for key in files:
     if "_nonrRNA" in key:
         name = key.strip("_nonrRNA")
-        result = subprocess.run(
-            [
-                "salmon",
-                "quant",
-                "-i",
-                salmon_index_dir,
-                "-l",
-                "A", #Autodetect lib type
-                "-1",
-                f"{reads_dir}/{files[key][0]}",
-                "-2",
-                f"{reads_dir}/{files[key][1]}",
-                "-p",
-                "4",
-                "-o",
-                f"{salmon_dir}/{name}/",
-            ]
+        subprocess.run(
+            f"salmon quant -i {salmon_index_dir} -l A -1 {reads_dir}/{files[key][0]} -2 {reads_dir}/{files[key][1]} -p {CPU} -o {salmon_dir}/{name}/",
+            shell=True,
+            check=True
         )
         if result.returncode != 0:
             raise RuntimeError(f"Error: Failed to run salmon quantification on {key}!")
