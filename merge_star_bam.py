@@ -22,18 +22,27 @@ for dirpath, dirnames, filenames in os.walk("star_alignment"):
 bam_files_str = " ".join(bam_files)
 
 # Merge bam files
-result = subprocess.run(f"samtools \
-                merge \
-                -o {trinity_dir}/merged.bam \
-                *{bam_files_str} \
-                -@ 4",
-                shell=True)
-if result.returncode != 0:
-    raise ValueError("Error merging bam files")
+if not os.path.exists(f"{trinity_dir}/merged.bam"):
+    print("Merging bam files")
+    result = subprocess.run(f"samtools \
+                    merge \
+                    -o {trinity_dir}/merged.bam \
+                    {bam_files_str} \
+                    -@ 4",
+                    shell=True,
+                    check=True)
+    if result.returncode != 0:
+        raise ValueError("Error merging bam files")
 
 # Sort bam file by coordinate
-subprocess.run(f"samtools \
-                sort \
-                -o {trinity_dir}/merged_sorted.bam \
-                {trinity_dir}/merged.bam \
-                -@ 4")
+if not os.path.exists(f"{trinity_dir}/merged_sorted.bam"):
+    print("Sorting bam file")
+    result = subprocess.run(f"samtools \
+                    sort \
+                    -o {trinity_dir}/merged_sorted.bam \
+                    {trinity_dir}/merged.bam \
+                    -@ 4",
+                    shell=True,
+                    check=True)
+    if result.returncode != 0:
+        raise ValueError("Error sorting bam file")
