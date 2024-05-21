@@ -84,7 +84,7 @@ if not os.path.exists(salmon_index_dir):
 
 # replicates = get_filenames(reads_dir)
 replicates = get_filenames_filepaths(
-    reads_dir, "_R1", "_R2", file_filter=lambda x: x.endswith(".fastq.gz")
+    reads_dir, "_R1", "_R2", file_filter=lambda x: x.endswith(".fastq.gz") and "nonrRNA" in x
 )
 
 for key in replicates:
