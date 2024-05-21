@@ -67,13 +67,11 @@ class FileHandler:
         self.path = path
     
     def check_exists(self, error_message: str = None):
-        try:
-            os.path.exists(self.path)
-        except FileNotFoundError as e:
+        if not os.path.exists(self.path):
             if error_message is not None:
                 raise FileNotFoundError(error_message)
             else:
-                raise FileNotFoundError(f"Error: {e}")
+                raise FileNotFoundError(f"Error: {self.path} does not exist.")
         return os.path.exists(self.path)
     
     def make_dir(self):
