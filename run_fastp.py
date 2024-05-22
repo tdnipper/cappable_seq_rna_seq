@@ -4,6 +4,7 @@ import os
 
 input_dir = "raw_data"
 output_dir = "trimmed_reads_fastp"
+fastqc_dir = "fastqc/trimmed_reads"
 CPU = os.cpu_count()
 
 output_dir_handler = FileHandler(output_dir)
@@ -24,3 +25,6 @@ for key in files:
         -l 25 \
         -q 20")
     fastp_runner.run_shell()
+
+fastqc_runner = ShellProcessRunner(f"fastqc {output_dir}/ -o {fastqc_dir}/ -t {CPU}")
+fastqc_runner.run_shell()
