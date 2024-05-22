@@ -3,7 +3,7 @@ from filename_utils import ShellProcessRunner
 import os
 
 input_dir = "raw_data"
-output_dir = "trimmed_reads_fastp"
+output_dir = "trimmed_reads"
 fastqc_dir = "fastqc/trimmed_reads"
 CPU = os.cpu_count()
 
