@@ -42,3 +42,4 @@ trinity_genome_guided
 bbsplit_reads
 ref
 fastqc
+trimmed_reads_fastp
