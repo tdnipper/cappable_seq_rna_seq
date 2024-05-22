@@ -8,9 +8,10 @@ out_dir = f"{basedir}/bbsplit_reads"
 ref_file = f"{basedir}/myco_genome.fasta"
 genome = f"{basedir}/genome/hybrid_genome.fasta"
 index_dir = f"{basedir}/bbsplit_reads/index"
+file_filter = lambda x: "nonrRNA" in x and x.endswith(".fastq.gz")
 CPU = os.cpu_count()
 
-files = FileHandler.get_files(ribodepleted_dir, "_R1", "_R2", file_filter = lambda x: x.endswith(".fastq.gz")and "nonrRNA" in x)
+files = FileHandler.get_files(ribodepleted_dir, "_R1", "_R2", file_filter = file_filter)
 
 out_dir_handler = FileHandler(out_dir)
 out_dir_handler.make_dir()
