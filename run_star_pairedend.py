@@ -1,6 +1,7 @@
 import os
 import shutil
-import subprocess
+import signal
+import sys
 from filename_utils import get_filenames_filepaths
 from filename_utils import FileHandler
 from filename_utils import ShellProcessRunner
@@ -20,7 +21,18 @@ reads_dir = f"{basedir}/bbsplit_reads"
 CPU = os.cpu_count()
 file_filter = lambda x: "hybrid_genome" in x
 star_dir = f"{basedir}/star_alignment"
-star_index_dir = f"{basedir}/star_alignment/index"
+star_index_dir = f"{basedir}/genome/star_index"
+
+# Handle CTRL+C
+def signal_handler(sig, frame):
+    print("\nExiting...")
+    runner_remove_genome = ShellProcessRunner(f"STAR --genomeLoad Remove --genomeDir {star_index_dir} --outFileNamePrefix {star_dir}/exit/exit")
+    runner_remove_genome.run_shell()
+    if os.path.exists(f"{star_dir}/exit"):
+        shutil.rmtree(f"{star_dir}/exit")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
 
 # Make directories
 reads_dir_handler = FileHandler(reads_dir)
@@ -30,7 +42,7 @@ star_dir_handler.make_dir()
 star_index_dir_handler = FileHandler(star_index_dir)
 star_index_dir_handler.make_dir()
 
-reads = reads_dir.get_files(prefix1="_1", prefix2="_2", file_filter=file_filter)
+reads = reads_dir_handler.get_files(prefix1="_1", prefix2="_2", file_filter=file_filter)
 
 for key in reads:
     if len(reads[key]) != 2:
