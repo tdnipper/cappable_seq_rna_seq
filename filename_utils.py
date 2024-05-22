@@ -75,10 +75,10 @@ class FileHandler:
         return os.path.exists(self.path)
     
     def make_dir(self):
-        if not self.check_exists():
-            os.makedirs(self.path)
-            os.chown(self.path, os.getuid(), os.getgid())
-            return self
+        try:
+            os.makedirs(self.path, exist_ok=True)
+        except Exception as e:
+            raise RuntimeError(f"Error: Could not create directory {self.path}. {str(e)}")
     
     def get_files(self, prefix1: str = "_R1", prefix2: str = "_R2", file_filter: callable = None):
         """
