@@ -9,8 +9,7 @@ files_handler = FileHandler(trimmed_dir)
 files = files_handler.get_files()
 
 outdir_handler = FileHandler(out_dir)
-if not outdir_handler.check_exists():
-    outdir_handler.make_dir()
+outdir_handler.make_dir()
 
 for sample in files:
     bbduk_runner = ShellProcessRunner(f"bbduk.sh \
