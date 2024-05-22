@@ -30,6 +30,7 @@ def signal_handler(sig, frame):
     runner_remove_genome.run_shell()
     if os.path.exists(f"{star_dir}/exit"):
         shutil.rmtree(f"{star_dir}/exit")
+    print("\nGenome removed from memory")
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
