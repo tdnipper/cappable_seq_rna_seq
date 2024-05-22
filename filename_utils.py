@@ -77,6 +77,7 @@ class FileHandler:
     def make_dir(self):
         try:
             os.makedirs(self.path, exist_ok=True)
+            os.chown(self.path, os.getuid(), os.getgid())
         except Exception as e:
             raise RuntimeError(f"Error: Could not create directory {self.path}. {str(e)}")
     
