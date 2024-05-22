@@ -4,6 +4,8 @@ import subprocess
 from filename_utils import get_filenames_filepaths
 from filename_utils import FileHandler
 from filename_utils import ShellProcessRunner
+from filename_utils import FileHandler
+from filename_utils import ShellProcessRunner
 
 # This script runs star on paired end R1 R2 reads after ribodepletion
 
@@ -20,9 +22,13 @@ file_filter = lambda x: "hybrid_genome" in x
 star_dir = f"{basedir}/star_alignment"
 star_index_dir = f"{basedir}/star_alignment/index"
 
-FileHandler.make_dir(reads_dir)
-FileHandler.make_dir(star_dir)
-FileHandler.make_dir(star_index_dir)
+# Make directories
+reads_dir_handler = FileHandler(reads_dir)
+reads_dir_handler.check_exists()
+star_dir_handler = FileHandler(star_dir)
+star_dir_handler.make_dir()
+star_index_dir_handler = FileHandler(star_index_dir)
+star_index_dir_handler.make_dir()
 
 reads = reads_dir.get_files(prefix1="_1", prefix2="_2", file_filter=file_filter)
 
