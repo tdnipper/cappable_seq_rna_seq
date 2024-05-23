@@ -6,7 +6,7 @@ out_dir = "bbduk_reads"
 ref_file = "human_rRNAs.fasta"
 
 files_handler = FileHandler(trimmed_dir)
-files = files_handler.get_files()
+files = files_handler.get_files("_R1_trimmed", "_R2_trimmed", file_filter=lambda x: x.endswith("_trimmed.fastq.gz"))
 
 outdir_handler = FileHandler(out_dir)
 outdir_handler.make_dir()
