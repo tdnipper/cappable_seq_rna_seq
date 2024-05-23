@@ -26,5 +26,5 @@ for key in files:
         -q 20")
     fastp_runner.run_shell()
 
-fastqc_runner = ShellProcessRunner(f"fastqc {output_dir}/ -o {fastqc_dir}/ -t {CPU}")
+fastqc_runner = ShellProcessRunner(f"fastqc {output_dir}/\*_trimmed.fastq.gz -o {fastqc_dir}/ -t {CPU}")
 fastqc_runner.run_shell()
