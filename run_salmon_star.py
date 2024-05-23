@@ -1,8 +1,6 @@
 #! /usr/bin/env python3
 
 import os
-import subprocess
-from filename_utils import get_filenames_filepaths
 from filename_utils import FileHandler
 from filename_utils import ShellProcessRunner
 
