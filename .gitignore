@@ -43,3 +43,4 @@ bbsplit_reads
 ref
 fastqc
 trimmed_reads_fastp
+salmon_quantification_human
