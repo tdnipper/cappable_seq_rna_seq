@@ -71,7 +71,7 @@ if not os.path.exists(salmon_index_dir):
             sys.exit("Error: creating hybrid_gentrome.fasta failed")
     # Run salmon index
     result = subprocess.run(
-        f"salmon index -t {hybrid_gentrome_file} -d genome/decoys.txt -p {CPU} -i {salmon_index_dir} --gencode",
+        f"salmon index -t {hybrid_gentrome_file} -d genome/decoys.txt -p {CPU} -i {salmon_index_dir} --gencode -k 25",
         shell=True,
         check=True
     )
