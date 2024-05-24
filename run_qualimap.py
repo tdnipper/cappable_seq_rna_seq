@@ -26,5 +26,6 @@ for file in files:
                                         -oc {outdir}/{file}/{file}_counts.txt \
                                         -s \
                                         -pe \
+                                        -p strand-specific-reverse \
                                         --java-mem-size=40G")
     qualimap_runner.run_shell()
