@@ -1,10 +1,11 @@
 #! /bin/bash
 
 source env.sh
-
-sudo mkdir qc_reports/qualimap
-sudo chown -R $USER_ID:$GROUP_ID qc_reports/qualimap
-sudo chmod -R 775 qc_reports/qualimap
+if [ ! -d "qc_reports/qualimap" ]; then
+    sudo mkdir qc_reports/qualimap
+    sudo chown -R $USER_ID:$GROUP_ID qc_reports/qualimap
+    sudo chmod -R 775 qc_reports/qualimap
+fi
 
 function handle_interrupt() {
     echo " Cancelled"
