@@ -1,4 +1,4 @@
-                            05/23/2024 at 14h31m56s                             
+                            05/23/2024 at 14h52m27s                             
 
 
  ------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ We filter the ontology to apply this rule.		We found 1861 terms that are sequenc
 => Number of feature type (3rd column): 6
 	* Level1: 1 => gene
 	* level2: 1 => transcript
-	* level3: 4 => three_prime_UTR CDS exon five_prime_UTR
+	* level3: 4 => CDS five_prime_UTR three_prime_UTR exon
 	* unknown: 0 => 
 => Version of the Bioperl GFF parser selected by AGAT: 3
 
