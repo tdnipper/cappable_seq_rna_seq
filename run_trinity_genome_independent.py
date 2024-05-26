@@ -1,41 +1,23 @@
 import os
-import subprocess
-
-leftfiles = []
-rightfiles = []
+from filename_utils import ShellProcessRunner
+from filename_utils import FileHandler
 
 CPU = os.cpu_count()
-
-reads = {}
-
 trinity_outdir = 'trinity_independent/'
-reads_dir = 'ribodepleted_reads'
+reads_dir = 'bbsplit_reads'
 
-for dirpath, dirnames, filenames in os.walk(reads_dir):
-    for filename in filenames:
-        if filename.endswith("_nonrRNA_R1.fq.gz") or filename.endswith("_nonrRNA_R2.fq.gz"):
-            basename = filename.rsplit("_", 2)[0]
-            if basename not in reads:
-                reads[basename] = {}
-            if filename.endswith("_nonrRNA_R1.fq.gz"):
-                reads[basename][0] = os.path.join(dirpath, filename)
-            elif filename.endswith("_nonrRNA_R2.fq.gz"):
-                reads[basename][1] = os.path.join(dirpath, filename)
+files_handler = FileHandler(reads_dir)
+files = files_handler.get_files('_1', '_2', file_filter = lambda x: "hybrid_genome" in x)
+left_files = ",".join(files[key][0] for key in sorted(files.keys()))
+right_files = ",".join(files[key][1] for key in sorted(files.keys()))
 
-for basename in sorted(reads.keys()):
-    leftfiles.append(reads[basename][0])
-    rightfiles.append(reads[basename][1])
-
-
-leftfiles = ",".join(sorted(leftfiles))
-rightfiles = ",".join(sorted(rightfiles))
-
-result = subprocess.run(f"Trinity \
-                        --left {leftfiles} \
-                        --right {rightfiles} \
+trinity_runner = ShellProcessRunner(f"Trinity \
+                        --left {left_files} \
+                        --right {right_files} \
                         --seqType fq \
                         --CPU {CPU} \
                         --max_memory 35G \
                         --output {trinity_outdir} \
-                        --full_cleanup",
-                        shell=True)
+                        --full_cleanup \
+                        --SS_lib_type RF")
+trinity_runner.run_shell()
