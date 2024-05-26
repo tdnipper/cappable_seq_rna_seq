@@ -20,7 +20,7 @@ PGID = os.getgid()
 salmon_dir = f"{basedir}/salmon_quantification"
 reads_dir = f"{basedir}/bbsplit_reads"
 salmon_index_dir = f"{basedir}/genome/salmon_index"
-transcript_file = f"{basedir}/genome/hybrid_transcript_gffread.fasta"
+transcript_file = f"{basedir}/genome/hybrid_exon.fasta"
 hybrid_gentrome_file = f"{salmon_dir}/hybrid_gentrome.fasta"
 human_genome_file = f"{basedir}/genome/GRCh38.primary_assembly.genome.fa"
 wsn_genome_file = f"{basedir}/genome/WSN_Mehle.fasta"
@@ -92,7 +92,7 @@ for key in replicates:
         f"salmon \
                             quant \
                             -i {salmon_index_dir} \
-                            -l ISF \
+                            -l ISR \
                             -1 {replicates[key][0]} \
                             -2 {replicates[key][1]} \
                             --validateMappings \
