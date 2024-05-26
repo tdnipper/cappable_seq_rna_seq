@@ -105,6 +105,7 @@ class FileHandler:
         files = {}
         for dirpath, _, filenames in os.walk(self.path):
             for file in filenames:
+                name = None
                 if file_filter is None or file_filter(file):
                     if prefix1 in file:
                         name = file.split(prefix1)[0]
