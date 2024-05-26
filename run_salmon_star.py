@@ -15,7 +15,6 @@ PGID = os.getgid()
 CPU = os.cpu_count()
 file_filter = lambda x: x.endswith("_Aligned.toTranscriptome.out.bam")
 
-
 salmon_handler = FileHandler(salmon_dir)
 salmon_handler.make_dir()
 star_dir_handler = FileHandler(star_dir)
@@ -24,5 +23,6 @@ star_dir_handler.check_exists("Error: star alignments directory not found, run s
 files = FileHandler.get_files(star_dir_handler, "_Aligned.toTranscriptome.out.bam", file_filter=file_filter)
 
 for name in files:
-    salmon_runner = ShellProcessRunner(f"salmon quant -t {transcripts} -l ISR -a {files[name][0]} -p {CPU} -o {salmon_dir}/{name} --numBootstraps 30")
+    salmon_runner = ShellProcessRunner(
+        f"salmon quant -t {transcripts} -l ISR -a {files[name][0]} -p {CPU} -o {salmon_dir}/{name} --numBootstraps 30")
     salmon_runner.run_shell()
