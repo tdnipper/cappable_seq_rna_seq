@@ -24,13 +24,15 @@ View(samples)
 file.exists(samples$files)
 
 # Make custom linked txome from salmon index to get hybrid WSN/human
-txome <- makeLinkedTxome("genome/salmon_index",
+txome <- makeLinkedTxome(
+    "genome/salmon_index",
     "de-novo",
     "Homo sapiens and WSN",
-    "custom", "GRCh38/WSN",
+    "GENCODE/custom", "GRCh38/WSN",
     "genome/hybrid_exon.fasta",
     "genome/hybrid_annotated_cat.gtf",
     "tx.json"
 )
+makeLinkedTxome(txome)
 
 se <- tximeta(samples)
