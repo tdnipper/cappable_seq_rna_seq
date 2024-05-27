@@ -29,19 +29,11 @@ wsn_genome_file = f"{basedir}/genome/WSN_Mehle.fasta"
 hybrid_genome_file = f"{basedir}/genome/hybrid_genome.fasta"
 CPU = os.cpu_count()
 
-# if not os.path.exists(salmon_dir):
-#     print("Creating salmon_quantification directory")
-#     os.mkdir(salmon_dir)
-#     os.chown(salmon_dir, PUID, PGID)
-
 salmon_dir_handler = FileHandler(salmon_dir)
 salmon_dir_handler.create_dir()
 
-# if not os.path.exists(reads_dir):
-#     sys.exit("Error: ribodepleted_reads directory does not exist")
-
 reads_dir_handler = FileHandler(reads_dir)
-reads_dir_handler.check_exists("Error: ribodepleted_reads directory does not exist")
+reads_dir_handler.check_exists("Error: reads directory does not exist")
 
 if not os.path.exists(salmon_index_dir):
     print("Salmon index directory does not exist")
