@@ -30,7 +30,7 @@ hybrid_genome_file = f"{basedir}/genome/hybrid_genome.fasta"
 CPU = os.cpu_count()
 
 salmon_dir_handler = FileHandler(salmon_dir)
-salmon_dir_handler.create_dir()
+salmon_dir_handler.make_dir()
 
 reads_dir_handler = FileHandler(reads_dir)
 reads_dir_handler.check_exists("Error: reads directory does not exist")
