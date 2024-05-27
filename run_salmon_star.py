@@ -24,5 +24,5 @@ files = FileHandler.get_files(star_dir_handler, "_Aligned.toTranscriptome.out.ba
 
 for name in files:
     salmon_runner = ShellProcessRunner(
-        f"salmon quant -t {transcripts} -l ISR -a {files[name][0]} -p {CPU} -o {salmon_dir}/{name} --numBootstraps 30")
+        f"salmon quant -t {transcripts} -l ISR -a {files[name][0]} -p {CPU} -o {salmon_dir}/{name} --numGibbsSamples 30")
     salmon_runner.run_shell()

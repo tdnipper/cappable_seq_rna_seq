@@ -103,7 +103,7 @@ for key in replicates:
                             --writeUnmappedNames \
                             -o {salmon_dir}/{key} \
                             --recoverOrphans \
-                            --numBootstraps 30",
+                            --numGibbsSamples 30",
         shell=True,
         check=True
     )
