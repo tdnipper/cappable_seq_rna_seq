@@ -63,10 +63,37 @@ def get_filenames_filepaths(directory: str, prefix1: str = "_R1", prefix2: str =
     return files
 
 class FileHandler:
+    """
+    A utility class for handling file and directory operations.
+
+    This class provides methods to check if a file or directory exists, create a directory, 
+    and retrieve filenames and filepaths from a directory based on specified prefixes.
+
+    Attributes:
+        path (str): The path of the file or directory to handle.
+
+    Methods:
+        check_exists(error_message: str = None): Checks if the file or directory at self.path exists.
+        make_dir(): Creates a directory at self.path.
+        get_files(prefix1: str = "_R1", prefix2: str = "_R2", file_filter: callable = None): Retrieves the filenames and filepaths from a directory.
+    """
     def __init__(self, path):
         self.path = path
     
     def check_exists(self, error_message: str = None):
+        """
+        Checks if the file or directory exists at the specified path.
+
+        Args:
+            error_message (str, optional): Custom error message to raise if the file or directory does not exist.
+                                           Defaults to None.
+
+        Raises:
+            FileNotFoundError: If the file or directory does not exist.
+
+        Returns:
+            bool: True if the file or directory exists, False otherwise.
+        """
         if not os.path.exists(self.path):
             if error_message is not None:
                 raise FileNotFoundError(error_message)
@@ -75,6 +102,16 @@ class FileHandler:
         return os.path.exists(self.path)
     
     def make_dir(self):
+        """
+        Creates a directory at the specified path.
+
+        This method creates a directory at the path specified by `self.path`. If the directory already exists, it does nothing.
+        The method also sets the ownership of the directory to the current user.
+
+        Raises:
+            RuntimeError: If an error occurs while creating the directory.
+
+        """
         try:
             os.makedirs(self.path, exist_ok=True)
             os.chown(self.path, os.getuid(), os.getgid())
@@ -120,12 +157,24 @@ class FileHandler:
                 
         return files
 
+
 class ShellProcessRunner:
+    """
+    A class for running shell commands using subprocess module.
+    """
+
     def __init__(self, command):
         self.command = command
 
     def run_shell(self):
+        """
+        Executes the shell command.
+
+        Raises:
+            Exception: If the shell command execution fails.
+        """
         try:
             subprocess.run(self.command, shell=True, check=True)
         except subprocess.CalledProcessError as e:
             raise Exception(f"Error: {e}")
+        
