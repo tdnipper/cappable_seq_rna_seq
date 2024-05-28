@@ -46,3 +46,6 @@ trimmed_reads_fastp
 salmon_quantification_human
 qualimap
 nontRNA_reads
+trinity_independent.Trinity.fasta
+trinity_independent.Trinity.fasta.gene_trans_map
+linkedTxomeTbl.json
