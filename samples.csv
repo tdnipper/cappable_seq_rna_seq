@@ -1,0 +1,13 @@
+names, condition, batch
+mock-input, input, 1
+mock-enriched, enriched, 1
+ix-1-1-input, input, 1
+ix-1-1-enriched, enriched, 1
+ix-1-2-input, input, 1
+ix-1-2-enriched, enriched, 1
+ix-1-3-input, input, 1
+ix-1-3-enriched, enriched, 1
+ix-2-input, input, 1
+ix-2-enriched, enriched, 1
+ix-3-input, input, 1
+ix-3-enriched, enriched, 1
