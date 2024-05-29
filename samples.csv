@@ -1,13 +1,13 @@
-names, condition, batch
-mock-input, input, 1
-mock-enriched, enriched, 1
-ix-1-1-input, input, 1
-ix-1-1-enriched, enriched, 1
-ix-1-2-input, input, 1
-ix-1-2-enriched, enriched, 1
-ix-1-3-input, input, 1
-ix-1-3-enriched, enriched, 1
-ix-2-input, input, 1
-ix-2-enriched, enriched, 1
-ix-3-input, input, 1
-ix-3-enriched, enriched, 1
+names,condition,batch,infection
+mock-input,input,1,mock
+mock-enriched,enriched,1,mock
+ix-1-1-input,input,1,infected
+ix-1-1-enriched,enriched,1,infected
+ix-1-2-input,input,1,infected
+ix-1-2-enriched,enriched,1,infected
+ix-1-3-input,input,1,infected
+ix-1-3-enriched,enriched,1,infected
+ix-2-input,input,1,infected
+ix-2-enriched,enriched,1,infected
+ix-3-input,input,1,infected
+ix-3-enriched,enriched,1,infected
