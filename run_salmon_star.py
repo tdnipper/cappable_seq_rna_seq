@@ -9,7 +9,7 @@ from filename_utils import ShellProcessRunner
 
 star_dir = "star_alignment"
 salmon_dir = "salmon_quantification_star"
-transcripts = "genome/hybrid_transcript_gffread.fasta"
+transcripts = "genome/hybrid_exon.fasta"
 PUID = os.getuid()
 PGID = os.getgid()
 CPU = os.cpu_count()
