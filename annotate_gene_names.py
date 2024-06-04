@@ -1,6 +1,5 @@
 import pandas as pd
 import argparse
-import sys
 
 parser = argparse.ArgumentParser(
     description="Annotate gene_ids from GENCODDE with gene_name in csv file."
