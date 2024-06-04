@@ -31,15 +31,15 @@ genome_dir <- normalizePath("genome/hybrid_genome.fasta")
 gtf_dir <- normalizePath("genome/hybrid_annotated_gffread.gtf")
 
 txome <- makeLinkedTxome(
-  indexDir=salmon_dir,
-  source="GENCODE homemade",
-  organism="human/WSN",
-  release="GRCh38.v46",
-  genome=genome_dir,
-  fasta=transcript_dir,
-  gtf=gtf_dir,
-  write=TRUE,
-  jsonFile="linkedTxomeTbl.json"
+  indexDir = salmon_dir,
+  source = "GENCODE homemade",
+  organism = "human/WSN",
+  release = "GRCh38.v46",
+  genome = genome_dir,
+  fasta = transcript_dir,
+  gtf = gtf_dir,
+  write = TRUE,
+  jsonFile = "linkedTxomeTbl.json"
 )
 # bfcloc <- getTximetaBFC()
 # bfc <- BiocFileCache(bfcloc)
@@ -67,15 +67,15 @@ rowRanges(gse)
 dim(gse)
 
 # Import to Deseq2
-dds_condition <- DESeqDataSet(gse, design = ~ condition)
-dds_infection <- DESeqDataSet(gse, design = ~ infection)
+dds_condition <- DESeqDataSet(gse, design = ~condition)
+dds_infection <- DESeqDataSet(gse, design = ~infection)
 
 # Pre-filter rows with < 10 reads in 2 samples
 smallest_group_size <- 2
 keep_condition <- rowSums(counts(dds_condition) >= smallest_group_size) >= 10
-dds_condition <- dds_condition[keep_condition,]
+dds_condition <- dds_condition[keep_condition, ]
 keep_infection <- rowSums(counts(dds_infection) >= smallest_group_size) >= 10
-dds_infection <- dds_infection[keep_infection,]
+dds_infection <- dds_infection[keep_infection, ]
 
 # Set up factors
 levels(dds_condition$condition)
@@ -96,16 +96,18 @@ res_infection <- results(dds_infection)
 
 # Filter padj values to get significant results
 res05_condition <- results(dds_condition, alpha = 0.05)
+# res05_condition <- subset(res05_condition, padj < 0.0001)
 sum(res05_condition$padj < 0.05, na.rm = TRUE)
 summary(res05_condition)
 res05_infection <- results(dds_infection, alpha = 0.05)
+# res05_infection <- subset(res05_infection, padj < 0.0001)
 sum(res05_infection$padj < 0.05, na.rm = TRUE)
 summary(res05_infection)
 
 # Plot
-res05_condition <- res05_condition[order(-res05_condition$log2FoldChange),]
-res05_infection <- res05_infection[order(-res05_infection$log2FoldChange),]
+res05_condition <- res05_condition[order(-res05_condition$log2FoldChange), ]
+res05_infection <- res05_infection[order(-res05_infection$log2FoldChange), ]
 
 # Export res05_infection to CSV
-write.csv(res05_condition, file = "res05_condition.csv", row.names = TRUE)
-write.csv(res05_infection, file = "res05_infection.csv", row.names = TRUE)
+write.csv(res05_condition, file = "deseq2/salmon_only/res05_condition.csv", row.names = TRUE)
+write.csv(res05_infection, file = "deseq2/salmon_only/res05_infection.csv", row.names = TRUE)
