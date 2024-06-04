@@ -18,7 +18,7 @@ def annotate_genes(file):
 
     # Parse GTF file and create a dictionary mapping gene IDs to gene names
     gene_dict = {}
-    with open("genome/hybrid_annotated_cat.gtf", "r") as gtf:
+    with open("/home/ubuntu/blockvolume/cappable_seq_rna_seq/genome/hybrid_annotated_cat.gtf", "r") as gtf:
         for line in gtf:
             if "gene_name" in line:
                 gene_id = line.split()[9].strip('"').strip('";')
