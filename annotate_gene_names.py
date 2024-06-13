@@ -31,7 +31,7 @@ def annotate_genes(file):
     try:
         f["gene_name"] = f.iloc[:, 0].map(gene_dict)
     except:
-        f["gene_name"] = "unnamed"
+        f["gene_name"] = ""
 
     f.rename(columns={f.columns[0]: "gene_id"}, inplace=True)
     return f.to_csv(f"{basename}_annotated.csv", index=False)
