@@ -11,12 +11,12 @@ samples <- samples[order(samples$names), ]
 samples$condition <- factor(samples$condition)
 samples$infection <- factor(samples$infection)
 samples$group <- paste(samples$infection, samples$condition, sep = "_")
-samples$group <- factor(samples$group)
-View(samples)
+samples$group <- factor(samples$group, levels = c("mock_input", "mock_enriched", "infected_input", "infected_enriched"))
+
 # read in star genecounts as matrix (not dataframe)
 dir <- normalizePath("/home/ubuntu/blockvolume/cappable_seq_rna_seq/deseq2/star")
 infile_path <- file.path(dir, "deseq2_input.csv")
-infile <- as.matrix(read.csv(infile_path, row.names="gene_id"))
+infile <- as.matrix(read.csv(infile_path, row.names = "gene_id"))
 
 # drop x column (index from old dataframe)
 infile <- infile[, -which(colnames(infile) %in% "X")]
@@ -24,7 +24,7 @@ infile <- infile[, -which(colnames(infile) %in% "X")]
 # Set up DE experiment using infection status as the main condition
 # Use cappable-seq enrichment as additional factor
 # dds_infection <- DESeqDataSetFromMatrix(countData = infile, colData = samples, ~ condition + infection)
-dds_infection <- DESeqDataSetFromMatrix(countData = infile, colData = samples, ~ group)
+dds_infection <- DESeqDataSetFromMatrix(countData = infile, colData = samples, ~group)
 
 # Specify the reference levels in each experimental factor
 # dds_infection$infection <- relevel(dds_infection$infection, ref = "mock")
@@ -38,9 +38,9 @@ dds_infection <- dds_infection[keep_infection, ]
 # Calculate differential expression
 dds_infection <- DESeq(dds_infection)
 resultsNames(dds_infection)
-res_infection <- results(dds_infection, contrast = c("group", "mock_enriched", "infected_enriched"))
+res_infection <- results(dds_infection, contrast = c("group", "infected_enriched", "mock_enriched"))
 
-# Apply FDR filter of 0.05 to results 
+# Apply FDR filter of 0.05 to results
 res05_infection <- results(dds_infection, alpha = 0.05)
 sum(res05_infection$padj < 0.05, na.rm = TRUE) # Returns # of genes that pass FDR alpha
 summary(res05_infection)
