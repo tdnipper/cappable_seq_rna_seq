@@ -4,8 +4,8 @@
 
 This repository contains files and analysis for RNA-seq derived from cappable seq. It also contains `ansible` playbooks necessary to bring up a linux instance with the required conda environment.
 
-[!IMPORTANT]
-This is a first attempt to analyze this data before moving everything to a Nextflow pipeline. It is not very reproducible and the scripts to run each program will not work outside of their original, very specific context.
+>[!NOTE]
+>This is a first attempt to analyze this data before moving everything to a Nextflow pipeline. It is not very reproducible and the scripts to run each program will not work outside of their original, very specific context.
 
 ## Server initialization and automation
 
