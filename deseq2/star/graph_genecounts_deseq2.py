@@ -65,13 +65,17 @@ sns.scatterplot(
     x = "p_adj_log",
     y = "log2FoldChange",
     linewidth = 0,
-    legend = False,
     hue="group",
     palette=colors
 )
+
+handles, labels = plt.gca().get_legend_handles_labels()
+plt.legend(title="Source of transcript", handles=handles, labels=["IAV", "Human"])
+
 plt.xlabel("-log10 P value")
 plt.ylabel("Log2 foldchange")
 plt.title("Enrichment of 5' triphosphorylated RNAs during infection")
 plt.tight_layout()
 plt.savefig("-log_p_adj.png", dpi=300)
+plt.savefig("-log_p_adj.svg")
 plt.close()
